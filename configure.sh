@@ -59,7 +59,7 @@ npm install -g pnpm
 # install nginx
 apt install -y nginx
 # copy file
-ln -s /etc/nginx/sites-available/graph.dao.teledisko.com /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/api.neokingdom.org /etc/nginx/sites-enabled
 
 
 # install certbot

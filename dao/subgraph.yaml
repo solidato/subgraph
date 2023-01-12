@@ -75,9 +75,9 @@ dataSources:
           handler: handleDelegateChanged
       file: ./src/voting-mapping.ts
   - kind: ethereum
-    name: TelediskoToken
+    name: NeokingdomToken
     source:
-      abi: TelediskoToken
+      abi: NeokingdomToken
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -85,8 +85,8 @@ dataSources:
       entities:
         - Transfer
       abis:
-        - name: TelediskoToken
-          file: ./abis/TelediskoToken.json
+        - name: NeokingdomToken
+          file: ./abis/NeokingdomToken.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
@@ -96,4 +96,4 @@ dataSources:
           handler: handleOfferMatched
         - event: VestingSet(address,uint256)
           handler: handleVestingSet
-      file: ./src/teledisko-token-mapping.ts
+      file: ./src/neokingdom-token-mapping.ts

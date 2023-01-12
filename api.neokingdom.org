@@ -1,5 +1,5 @@
 server {
-    server_name graph.dao.teledisko.com;
+    server_name graph.dao.neokingdom.org;
 
     location /ipfs/api/v0/add {
         proxy_set_header Host $host;

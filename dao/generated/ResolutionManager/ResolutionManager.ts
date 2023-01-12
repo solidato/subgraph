@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class DelegateLostVotingPower extends ethereum.Event {
@@ -450,7 +450,7 @@ export class ResolutionManager extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(resolutionTypeId),
         ethereum.Value.fromBoolean(isNegative),
         ethereum.Value.fromAddressArray(executionTo),
-        ethereum.Value.fromBytesArray(executionData)
+        ethereum.Value.fromBytesArray(executionData),
       ]
     );
 
@@ -472,7 +472,7 @@ export class ResolutionManager extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(resolutionTypeId),
         ethereum.Value.fromBoolean(isNegative),
         ethereum.Value.fromAddressArray(executionTo),
-        ethereum.Value.fromBytesArray(executionData)
+        ethereum.Value.fromBytesArray(executionData),
       ]
     );
     if (result.reverted) {
@@ -542,7 +542,7 @@ export class ResolutionManager extends ethereum.SmartContract {
 
   getRoleAdmin(role: Bytes): Bytes {
     let result = super.call("getRoleAdmin", "getRoleAdmin(bytes32):(bytes32)", [
-      ethereum.Value.fromFixedBytes(role)
+      ethereum.Value.fromFixedBytes(role),
     ]);
 
     return result[0].toBytes();
@@ -570,7 +570,7 @@ export class ResolutionManager extends ethereum.SmartContract {
       "getVoterVote(uint256,address):(bool,bool,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(resolutionId),
-        ethereum.Value.fromAddress(voter)
+        ethereum.Value.fromAddress(voter),
       ]
     );
 
@@ -590,7 +590,7 @@ export class ResolutionManager extends ethereum.SmartContract {
       "getVoterVote(uint256,address):(bool,bool,uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(resolutionId),
-        ethereum.Value.fromAddress(voter)
+        ethereum.Value.fromAddress(voter),
       ]
     );
     if (result.reverted) {
@@ -609,7 +609,7 @@ export class ResolutionManager extends ethereum.SmartContract {
   hasRole(role: Bytes, account: Address): boolean {
     let result = super.call("hasRole", "hasRole(bytes32,address):(bool)", [
       ethereum.Value.fromFixedBytes(role),
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBoolean();
@@ -618,7 +618,7 @@ export class ResolutionManager extends ethereum.SmartContract {
   try_hasRole(role: Bytes, account: Address): ethereum.CallResult<boolean> {
     let result = super.tryCall("hasRole", "hasRole(bytes32,address):(bool)", [
       ethereum.Value.fromFixedBytes(role),
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -972,7 +972,7 @@ export class InitializeCall__Inputs {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get telediskoToken(): Address {
+  get neokingdomToken(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
@@ -1117,32 +1117,32 @@ export class SetShareholderRegistryCall__Outputs {
   }
 }
 
-export class SetTelediskoTokenCall extends ethereum.Call {
-  get inputs(): SetTelediskoTokenCall__Inputs {
-    return new SetTelediskoTokenCall__Inputs(this);
+export class SetNeokingdomTokenCall extends ethereum.Call {
+  get inputs(): SetNeokingdomTokenCall__Inputs {
+    return new SetNeokingdomTokenCall__Inputs(this);
   }
 
-  get outputs(): SetTelediskoTokenCall__Outputs {
-    return new SetTelediskoTokenCall__Outputs(this);
+  get outputs(): SetNeokingdomTokenCall__Outputs {
+    return new SetNeokingdomTokenCall__Outputs(this);
   }
 }
 
-export class SetTelediskoTokenCall__Inputs {
-  _call: SetTelediskoTokenCall;
+export class SetNeokingdomTokenCall__Inputs {
+  _call: SetNeokingdomTokenCall;
 
-  constructor(call: SetTelediskoTokenCall) {
+  constructor(call: SetNeokingdomTokenCall) {
     this._call = call;
   }
 
-  get telediskoToken(): Address {
+  get neokingdomToken(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
 
-export class SetTelediskoTokenCall__Outputs {
-  _call: SetTelediskoTokenCall;
+export class SetNeokingdomTokenCall__Outputs {
+  _call: SetNeokingdomTokenCall;
 
-  constructor(call: SetTelediskoTokenCall) {
+  constructor(call: SetNeokingdomTokenCall) {
     this._call = call;
   }
 }

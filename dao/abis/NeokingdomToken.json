@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "TelediskoToken",
-  "sourceName": "contracts/TelediskoToken/TelediskoToken.sol",
+  "contractName": "NeokingdomToken",
+  "sourceName": "contracts/NeokingdomToken/NeokingdomToken.sol",
   "abi": [
     {
       "inputs": [],

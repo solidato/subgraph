@@ -523,8 +523,8 @@
           "type": "address"
         },
         {
-          "internalType": "contract ITelediskoToken",
-          "name": "telediskoToken",
+          "internalType": "contract INeokingdomToken",
+          "name": "neokingdomToken",
           "type": "address"
         },
         {
@@ -696,12 +696,12 @@
     {
       "inputs": [
         {
-          "internalType": "contract ITelediskoToken",
-          "name": "telediskoToken",
+          "internalType": "contract INeokingdomToken",
+          "name": "neokingdomToken",
           "type": "address"
         }
       ],
-      "name": "setTelediskoToken",
+      "name": "setNeokingdomToken",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

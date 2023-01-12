@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -284,9 +284,9 @@ export class VestingSet__Params {
   }
 }
 
-export class TelediskoToken extends ethereum.SmartContract {
-  static bind(address: Address): TelediskoToken {
-    return new TelediskoToken("TelediskoToken", address);
+export class NeokingdomToken extends ethereum.SmartContract {
+  static bind(address: Address): NeokingdomToken {
+    return new NeokingdomToken("NeokingdomToken", address);
   }
 
   DEFAULT_ADMIN_ROLE(): Bytes {
@@ -361,7 +361,7 @@ export class TelediskoToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -370,7 +370,7 @@ export class TelediskoToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -381,7 +381,7 @@ export class TelediskoToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -389,7 +389,7 @@ export class TelediskoToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -404,7 +404,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       "balanceOfAt(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(snapshotId)
+        ethereum.Value.fromUnsignedBigInt(snapshotId),
       ]
     );
 
@@ -420,7 +420,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       "balanceOfAt(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(snapshotId)
+        ethereum.Value.fromUnsignedBigInt(snapshotId),
       ]
     );
     if (result.reverted) {
@@ -451,7 +451,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
       ]
     );
 
@@ -467,7 +467,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
       ]
     );
     if (result.reverted) {
@@ -502,7 +502,7 @@ export class TelediskoToken extends ethereum.SmartContract {
 
   getRoleAdmin(role: Bytes): Bytes {
     let result = super.call("getRoleAdmin", "getRoleAdmin(bytes32):(bytes32)", [
-      ethereum.Value.fromFixedBytes(role)
+      ethereum.Value.fromFixedBytes(role),
     ]);
 
     return result[0].toBytes();
@@ -524,7 +524,7 @@ export class TelediskoToken extends ethereum.SmartContract {
   hasRole(role: Bytes, account: Address): boolean {
     let result = super.call("hasRole", "hasRole(bytes32,address):(bool)", [
       ethereum.Value.fromFixedBytes(role),
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBoolean();
@@ -533,7 +533,7 @@ export class TelediskoToken extends ethereum.SmartContract {
   try_hasRole(role: Bytes, account: Address): ethereum.CallResult<boolean> {
     let result = super.tryCall("hasRole", "hasRole(bytes32,address):(bool)", [
       ethereum.Value.fromFixedBytes(role),
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -548,7 +548,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
+        ethereum.Value.fromUnsignedBigInt(addedValue),
       ]
     );
 
@@ -564,7 +564,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
+        ethereum.Value.fromUnsignedBigInt(addedValue),
       ]
     );
     if (result.reverted) {
@@ -729,7 +729,7 @@ export class TelediskoToken extends ethereum.SmartContract {
   transfer(to: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -738,7 +738,7 @@ export class TelediskoToken extends ethereum.SmartContract {
   try_transfer(to: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -754,7 +754,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
+        ethereum.Value.fromUnsignedBigInt(amount),
       ]
     );
 
@@ -772,7 +772,7 @@ export class TelediskoToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
+        ethereum.Value.fromUnsignedBigInt(amount),
       ]
     );
     if (result.reverted) {

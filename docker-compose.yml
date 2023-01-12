@@ -28,7 +28,7 @@ services:
     restart: always 
   ipfs:
     # image: ipfs/go-ipfs:v0.10.0
-    image: telediskodao/go-ipfs-cors:v0.10.0
+    image: neokingdomdao/go-ipfs-cors:v0.10.0
     build:
       context: .
     ports:
