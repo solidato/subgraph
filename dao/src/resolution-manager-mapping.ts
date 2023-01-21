@@ -26,12 +26,11 @@ import {
   ResolutionTypeCreated,
 } from "../generated/ResolutionManager/ResolutionManager";
 import { getDaoManagerEntity } from "./dao-manager";
+import { VOTING_CONTRACT_ADDRESS } from '../generated/addresses';
 import {
   ResolutionExecuted,
   ResolutionRejected,
 } from "../generated/ResolutionManager/ResolutionManager";
-
-const VOTING_CONTRACT_ADDRESS = "0x312A36442A7199623C91D219Fe981f1899817305";
 
 const setValuesFromResolutionContract = (
   resolutionEntity: Resolution,
