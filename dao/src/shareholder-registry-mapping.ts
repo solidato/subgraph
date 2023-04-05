@@ -54,6 +54,7 @@ export function handleStatusChanged(event: StatusChanged): void {
   if (daoUser) {
     daoUser.address = address
     daoUser.save()
+  }
 
   // remove the address from the "previous" list/s
   if (previousHexString == MANAGING_BOARD_STATUS) {
