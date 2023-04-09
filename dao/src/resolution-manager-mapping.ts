@@ -26,7 +26,7 @@ import {
   ResolutionTypeCreated,
 } from "../generated/ResolutionManager/ResolutionManager";
 import { getDaoManagerEntity } from "./dao-manager";
-import { VOTING_CONTRACT_ADDRESS } from '../generated/addresses';
+import { VOTING_CONTRACT_ADDRESS } from "../generated/addresses";
 import {
   ResolutionExecuted,
   ResolutionRejected,
@@ -94,6 +94,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
     resolutionEntity.approveTimestamp = blockChainResolution.value2;
     resolutionEntity.approveBy = event.transaction.from;
     resolutionEntity.snapshotId = blockChainResolution.value3;
+    resolutionEntity.hasQuorum = resolutionEntity.isNegative;
 
     for (
       let index = 0;
@@ -183,6 +184,7 @@ export function handleResolutionUpdated(event: ResolutionUpdated): void {
   if (resolutionEntity) {
     resolutionEntity.updateTimestamp = event.block.timestamp;
     resolutionEntity.updateBy = event.transaction.from;
+
     setValuesFromResolutionContract(
       resolutionEntity,
       resolutionManager.resolutions(event.params.resolutionId),
