@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt,
+  BigInt
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -51,170 +51,6 @@ export class Initialized__Params {
 
   get version(): i32 {
     return this._event.parameters[0].value.toI32();
-  }
-}
-
-export class OfferCreated extends ethereum.Event {
-  get params(): OfferCreated__Params {
-    return new OfferCreated__Params(this);
-  }
-}
-
-export class OfferCreated__Params {
-  _event: OfferCreated;
-
-  constructor(event: OfferCreated) {
-    this._event = event;
-  }
-
-  get id(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get from(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get expiration(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-}
-
-export class OfferExpired extends ethereum.Event {
-  get params(): OfferExpired__Params {
-    return new OfferExpired__Params(this);
-  }
-}
-
-export class OfferExpired__Params {
-  _event: OfferExpired;
-
-  constructor(event: OfferExpired) {
-    this._event = event;
-  }
-
-  get id(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get from(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-}
-
-export class OfferMatched extends ethereum.Event {
-  get params(): OfferMatched__Params {
-    return new OfferMatched__Params(this);
-  }
-}
-
-export class OfferMatched__Params {
-  _event: OfferMatched;
-
-  constructor(event: OfferMatched) {
-    this._event = event;
-  }
-
-  get id(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get from(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get to(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-}
-
-export class RoleAdminChanged extends ethereum.Event {
-  get params(): RoleAdminChanged__Params {
-    return new RoleAdminChanged__Params(this);
-  }
-}
-
-export class RoleAdminChanged__Params {
-  _event: RoleAdminChanged;
-
-  constructor(event: RoleAdminChanged) {
-    this._event = event;
-  }
-
-  get role(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-
-  get previousAdminRole(): Bytes {
-    return this._event.parameters[1].value.toBytes();
-  }
-
-  get newAdminRole(): Bytes {
-    return this._event.parameters[2].value.toBytes();
-  }
-}
-
-export class RoleGranted extends ethereum.Event {
-  get params(): RoleGranted__Params {
-    return new RoleGranted__Params(this);
-  }
-}
-
-export class RoleGranted__Params {
-  _event: RoleGranted;
-
-  constructor(event: RoleGranted) {
-    this._event = event;
-  }
-
-  get role(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get sender(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-}
-
-export class RoleRevoked extends ethereum.Event {
-  get params(): RoleRevoked__Params {
-    return new RoleRevoked__Params(this);
-  }
-}
-
-export class RoleRevoked__Params {
-  _event: RoleRevoked;
-
-  constructor(event: RoleRevoked) {
-    this._event = event;
-  }
-
-  get role(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get sender(): Address {
-    return this._event.parameters[2].value.toAddress();
   }
 }
 
@@ -284,55 +120,9 @@ export class VestingSet__Params {
   }
 }
 
-export class NeokingdomToken extends ethereum.SmartContract {
-  static bind(address: Address): NeokingdomToken {
-    return new NeokingdomToken("NeokingdomToken", address);
-  }
-
-  DEFAULT_ADMIN_ROLE(): Bytes {
-    let result = super.call(
-      "DEFAULT_ADMIN_ROLE",
-      "DEFAULT_ADMIN_ROLE():(bytes32)",
-      []
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_DEFAULT_ADMIN_ROLE(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "DEFAULT_ADMIN_ROLE",
-      "DEFAULT_ADMIN_ROLE():(bytes32)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  OFFER_EXPIRATION(): BigInt {
-    let result = super.call(
-      "OFFER_EXPIRATION",
-      "OFFER_EXPIRATION():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_OFFER_EXPIRATION(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "OFFER_EXPIRATION",
-      "OFFER_EXPIRATION():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
+export class GovernanceToken extends ethereum.SmartContract {
+  static bind(address: Address): GovernanceToken {
+    return new GovernanceToken("GovernanceToken", address);
   }
 
   allowance(owner: Address, spender: Address): BigInt {
@@ -361,7 +151,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
 
     return result[0].toBoolean();
@@ -370,7 +160,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -381,7 +171,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account),
+      ethereum.Value.fromAddress(account)
     ]);
 
     return result[0].toBigInt();
@@ -389,7 +179,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account),
+      ethereum.Value.fromAddress(account)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -404,7 +194,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       "balanceOfAt(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(snapshotId),
+        ethereum.Value.fromUnsignedBigInt(snapshotId)
       ]
     );
 
@@ -420,7 +210,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       "balanceOfAt(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(snapshotId),
+        ethereum.Value.fromUnsignedBigInt(snapshotId)
       ]
     );
     if (result.reverted) {
@@ -451,7 +241,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+        ethereum.Value.fromUnsignedBigInt(subtractedValue)
       ]
     );
 
@@ -467,7 +257,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+        ethereum.Value.fromUnsignedBigInt(subtractedValue)
       ]
     );
     if (result.reverted) {
@@ -500,46 +290,19 @@ export class NeokingdomToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getRoleAdmin(role: Bytes): Bytes {
-    let result = super.call("getRoleAdmin", "getRoleAdmin(bytes32):(bytes32)", [
-      ethereum.Value.fromFixedBytes(role),
-    ]);
+  getRoles(): Address {
+    let result = super.call("getRoles", "getRoles():(address)", []);
 
-    return result[0].toBytes();
+    return result[0].toAddress();
   }
 
-  try_getRoleAdmin(role: Bytes): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "getRoleAdmin",
-      "getRoleAdmin(bytes32):(bytes32)",
-      [ethereum.Value.fromFixedBytes(role)]
-    );
+  try_getRoles(): ethereum.CallResult<Address> {
+    let result = super.tryCall("getRoles", "getRoles():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  hasRole(role: Bytes, account: Address): boolean {
-    let result = super.call("hasRole", "hasRole(bytes32,address):(bool)", [
-      ethereum.Value.fromFixedBytes(role),
-      ethereum.Value.fromAddress(account),
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_hasRole(role: Bytes, account: Address): ethereum.CallResult<boolean> {
-    let result = super.tryCall("hasRole", "hasRole(bytes32,address):(bool)", [
-      ethereum.Value.fromFixedBytes(role),
-      ethereum.Value.fromAddress(account),
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   increaseAllowance(spender: Address, addedValue: BigInt): boolean {
@@ -548,7 +311,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue),
+        ethereum.Value.fromUnsignedBigInt(addedValue)
       ]
     );
 
@@ -564,7 +327,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue),
+        ethereum.Value.fromUnsignedBigInt(addedValue)
       ]
     );
     if (result.reverted) {
@@ -572,29 +335,6 @@ export class NeokingdomToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  lockedBalanceOf(account: Address): BigInt {
-    let result = super.call(
-      "lockedBalanceOf",
-      "lockedBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_lockedBalanceOf(account: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "lockedBalanceOf",
-      "lockedBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   name(): string {
@@ -612,29 +352,6 @@ export class NeokingdomToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  offeredBalanceOf(account: Address): BigInt {
-    let result = super.call(
-      "offeredBalanceOf",
-      "offeredBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_offeredBalanceOf(account: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "offeredBalanceOf",
-      "offeredBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   snapshot(): BigInt {
     let result = super.call("snapshot", "snapshot():(uint256)", []);
 
@@ -650,29 +367,6 @@ export class NeokingdomToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  supportsInterface(interfaceId: Bytes): boolean {
-    let result = super.call(
-      "supportsInterface",
-      "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceId)]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_supportsInterface(interfaceId: Bytes): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "supportsInterface",
-      "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceId)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
   symbol(): string {
     let result = super.call("symbol", "symbol():(string)", []);
 
@@ -686,6 +380,25 @@ export class NeokingdomToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  tokenExternal(): Address {
+    let result = super.call("tokenExternal", "tokenExternal():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_tokenExternal(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "tokenExternal",
+      "tokenExternal():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   totalSupply(): BigInt {
@@ -729,7 +442,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
   transfer(to: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
 
     return result[0].toBoolean();
@@ -738,7 +451,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
   try_transfer(to: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount),
+      ethereum.Value.fromUnsignedBigInt(amount)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -754,7 +467,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount),
+        ethereum.Value.fromUnsignedBigInt(amount)
       ]
     );
 
@@ -772,7 +485,7 @@ export class NeokingdomToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount),
+        ethereum.Value.fromUnsignedBigInt(amount)
       ]
     );
     if (result.reverted) {
@@ -780,29 +493,6 @@ export class NeokingdomToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  unlockedBalanceOf(account: Address): BigInt {
-    let result = super.call(
-      "unlockedBalanceOf",
-      "unlockedBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_unlockedBalanceOf(account: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "unlockedBalanceOf",
-      "unlockedBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   vestingBalanceOf(account: Address): BigInt {
@@ -910,7 +600,7 @@ export class BurnCall__Inputs {
     this._call = call;
   }
 
-  get account(): Address {
+  get from(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
@@ -923,36 +613,6 @@ export class BurnCall__Outputs {
   _call: BurnCall;
 
   constructor(call: BurnCall) {
-    this._call = call;
-  }
-}
-
-export class CreateOfferCall extends ethereum.Call {
-  get inputs(): CreateOfferCall__Inputs {
-    return new CreateOfferCall__Inputs(this);
-  }
-
-  get outputs(): CreateOfferCall__Outputs {
-    return new CreateOfferCall__Outputs(this);
-  }
-}
-
-export class CreateOfferCall__Inputs {
-  _call: CreateOfferCall;
-
-  constructor(call: CreateOfferCall) {
-    this._call = call;
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class CreateOfferCall__Outputs {
-  _call: CreateOfferCall;
-
-  constructor(call: CreateOfferCall) {
     this._call = call;
   }
 }
@@ -992,40 +652,6 @@ export class DecreaseAllowanceCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
-  }
-}
-
-export class GrantRoleCall extends ethereum.Call {
-  get inputs(): GrantRoleCall__Inputs {
-    return new GrantRoleCall__Inputs(this);
-  }
-
-  get outputs(): GrantRoleCall__Outputs {
-    return new GrantRoleCall__Outputs(this);
-  }
-}
-
-export class GrantRoleCall__Inputs {
-  _call: GrantRoleCall;
-
-  constructor(call: GrantRoleCall) {
-    this._call = call;
-  }
-
-  get role(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-}
-
-export class GrantRoleCall__Outputs {
-  _call: GrantRoleCall;
-
-  constructor(call: GrantRoleCall) {
-    this._call = call;
   }
 }
 
@@ -1084,12 +710,16 @@ export class InitializeCall__Inputs {
     this._call = call;
   }
 
+  get roles(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
   get name(): string {
-    return this._call.inputValues[0].value.toString();
+    return this._call.inputValues[1].value.toString();
   }
 
   get symbol(): string {
-    return this._call.inputValues[1].value.toString();
+    return this._call.inputValues[2].value.toString();
   }
 }
 
@@ -1097,44 +727,6 @@ export class InitializeCall__Outputs {
   _call: InitializeCall;
 
   constructor(call: InitializeCall) {
-    this._call = call;
-  }
-}
-
-export class MatchOfferCall extends ethereum.Call {
-  get inputs(): MatchOfferCall__Inputs {
-    return new MatchOfferCall__Inputs(this);
-  }
-
-  get outputs(): MatchOfferCall__Outputs {
-    return new MatchOfferCall__Outputs(this);
-  }
-}
-
-export class MatchOfferCall__Inputs {
-  _call: MatchOfferCall;
-
-  constructor(call: MatchOfferCall) {
-    this._call = call;
-  }
-
-  get from(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get to(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class MatchOfferCall__Outputs {
-  _call: MatchOfferCall;
-
-  constructor(call: MatchOfferCall) {
     this._call = call;
   }
 }
@@ -1207,100 +799,92 @@ export class MintVestingCall__Outputs {
   }
 }
 
-export class RenounceRoleCall extends ethereum.Call {
-  get inputs(): RenounceRoleCall__Inputs {
-    return new RenounceRoleCall__Inputs(this);
+export class SetRedemptionControllerCall extends ethereum.Call {
+  get inputs(): SetRedemptionControllerCall__Inputs {
+    return new SetRedemptionControllerCall__Inputs(this);
   }
 
-  get outputs(): RenounceRoleCall__Outputs {
-    return new RenounceRoleCall__Outputs(this);
+  get outputs(): SetRedemptionControllerCall__Outputs {
+    return new SetRedemptionControllerCall__Outputs(this);
   }
 }
 
-export class RenounceRoleCall__Inputs {
-  _call: RenounceRoleCall;
+export class SetRedemptionControllerCall__Inputs {
+  _call: SetRedemptionControllerCall;
 
-  constructor(call: RenounceRoleCall) {
+  constructor(call: SetRedemptionControllerCall) {
     this._call = call;
   }
 
-  get role(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-}
-
-export class RenounceRoleCall__Outputs {
-  _call: RenounceRoleCall;
-
-  constructor(call: RenounceRoleCall) {
-    this._call = call;
-  }
-}
-
-export class RevokeRoleCall extends ethereum.Call {
-  get inputs(): RevokeRoleCall__Inputs {
-    return new RevokeRoleCall__Inputs(this);
-  }
-
-  get outputs(): RevokeRoleCall__Outputs {
-    return new RevokeRoleCall__Outputs(this);
-  }
-}
-
-export class RevokeRoleCall__Inputs {
-  _call: RevokeRoleCall;
-
-  constructor(call: RevokeRoleCall) {
-    this._call = call;
-  }
-
-  get role(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-}
-
-export class RevokeRoleCall__Outputs {
-  _call: RevokeRoleCall;
-
-  constructor(call: RevokeRoleCall) {
-    this._call = call;
-  }
-}
-
-export class SetShareholderRegistryCall extends ethereum.Call {
-  get inputs(): SetShareholderRegistryCall__Inputs {
-    return new SetShareholderRegistryCall__Inputs(this);
-  }
-
-  get outputs(): SetShareholderRegistryCall__Outputs {
-    return new SetShareholderRegistryCall__Outputs(this);
-  }
-}
-
-export class SetShareholderRegistryCall__Inputs {
-  _call: SetShareholderRegistryCall;
-
-  constructor(call: SetShareholderRegistryCall) {
-    this._call = call;
-  }
-
-  get shareholderRegistry(): Address {
+  get redemption(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
 
-export class SetShareholderRegistryCall__Outputs {
-  _call: SetShareholderRegistryCall;
+export class SetRedemptionControllerCall__Outputs {
+  _call: SetRedemptionControllerCall;
 
-  constructor(call: SetShareholderRegistryCall) {
+  constructor(call: SetRedemptionControllerCall) {
+    this._call = call;
+  }
+}
+
+export class SetRolesCall extends ethereum.Call {
+  get inputs(): SetRolesCall__Inputs {
+    return new SetRolesCall__Inputs(this);
+  }
+
+  get outputs(): SetRolesCall__Outputs {
+    return new SetRolesCall__Outputs(this);
+  }
+}
+
+export class SetRolesCall__Inputs {
+  _call: SetRolesCall;
+
+  constructor(call: SetRolesCall) {
+    this._call = call;
+  }
+
+  get roles(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class SetRolesCall__Outputs {
+  _call: SetRolesCall;
+
+  constructor(call: SetRolesCall) {
+    this._call = call;
+  }
+}
+
+export class SetTokenExternalCall extends ethereum.Call {
+  get inputs(): SetTokenExternalCall__Inputs {
+    return new SetTokenExternalCall__Inputs(this);
+  }
+
+  get outputs(): SetTokenExternalCall__Outputs {
+    return new SetTokenExternalCall__Outputs(this);
+  }
+}
+
+export class SetTokenExternalCall__Inputs {
+  _call: SetTokenExternalCall;
+
+  constructor(call: SetTokenExternalCall) {
+    this._call = call;
+  }
+
+  get tokenExternalAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class SetTokenExternalCall__Outputs {
+  _call: SetTokenExternalCall;
+
+  constructor(call: SetTokenExternalCall) {
     this._call = call;
   }
 }
@@ -1476,5 +1060,77 @@ export class TransferFromCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class UnwrapCall extends ethereum.Call {
+  get inputs(): UnwrapCall__Inputs {
+    return new UnwrapCall__Inputs(this);
+  }
+
+  get outputs(): UnwrapCall__Outputs {
+    return new UnwrapCall__Outputs(this);
+  }
+}
+
+export class UnwrapCall__Inputs {
+  _call: UnwrapCall;
+
+  constructor(call: UnwrapCall) {
+    this._call = call;
+  }
+
+  get from(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get to(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+}
+
+export class UnwrapCall__Outputs {
+  _call: UnwrapCall;
+
+  constructor(call: UnwrapCall) {
+    this._call = call;
+  }
+}
+
+export class WrapCall extends ethereum.Call {
+  get inputs(): WrapCall__Inputs {
+    return new WrapCall__Inputs(this);
+  }
+
+  get outputs(): WrapCall__Outputs {
+    return new WrapCall__Outputs(this);
+  }
+}
+
+export class WrapCall__Inputs {
+  _call: WrapCall;
+
+  constructor(call: WrapCall) {
+    this._call = call;
+  }
+
+  get from(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._call.inputValues[1].value.toBigInt();
+  }
+}
+
+export class WrapCall__Outputs {
+  _call: WrapCall;
+
+  constructor(call: WrapCall) {
+    this._call = call;
   }
 }

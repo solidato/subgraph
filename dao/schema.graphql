@@ -38,6 +38,7 @@ type Resolution @entity {
   executionTo: [Bytes!]!
   executionData: [Bytes!]!
   executionTimestamp: BigInt
+  addressedContributor: Bytes!
 }
 
 type DelegationUser @entity {

@@ -46,6 +46,8 @@ const setValuesFromResolutionContract = (
   resolutionEntity.yesVotesTotal = blockChainResolution.value4;
   resolutionEntity.isNegative = blockChainResolution.value5;
   resolutionEntity.ipfsDataURI = ipfsDataURI;
+  resolutionEntity.addressedContributor = blockChainResolution.value8;
+
   const executionTo: Bytes[] = [];
   for (let index = 0; index < executionDetails.value0.length; index++) {
     // this is needed as you can't assign an Address[] to a Bytes[] directly, you need to first create Bytes[]
