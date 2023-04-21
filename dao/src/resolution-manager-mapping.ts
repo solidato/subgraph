@@ -112,6 +112,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
         const resolutionVoter = new ResolutionVoter(
           resolutionIdStringified + "-" + voterAddress.toHexString()
         );
+
         resolutionVoter.votingPower = result.value.value2;
         resolutionVoter.address = voterAddress;
         resolutionVoter.hasVoted = false;

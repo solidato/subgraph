@@ -1,7 +1,18 @@
 const networks = require("./networks.json");
 const fs = require("fs");
 
-const votingAddress = networks.tevmos.Voting.address;
+const network = process.env.NETWORK || "evmos";
+const votingAddress = networks[network]?.Voting.address;
+
+console.log("🚀 Generating contract address for network", network, "...");
+
+if (!votingAddress) {
+  console.log(
+    `❌ ${network} network not found, please make sure to provide the NETWORK environment variable`
+  );
+  process.exit(1);
+}
+
 fs.writeFile(
   "./generated/addresses.ts",
   `

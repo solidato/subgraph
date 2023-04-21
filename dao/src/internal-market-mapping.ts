@@ -14,7 +14,9 @@ export function handleOfferCreated(event: OfferCreated): void {
 
   offerEntity.from = event.params.from;
   offerEntity.amount = event.params.amount;
-  offerEntity.expirationTimestamp = event.params.expiration;
+  // todo once contracts will update we will have `expiredAt` as param.
+  // right now `createdAt` is the actual expiration date (PR done in the contracts)
+  offerEntity.expirationTimestamp = event.params.createdAt;
   offerEntity.createTimestamp = event.block.timestamp;
 
   offerEntity.save();
