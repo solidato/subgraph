@@ -1,5 +1,12 @@
 server {
-    server_name api-staging.neokingdom.org;
+    server_name api.neokingdom.org;
+
+
+    location /oracle/ {
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://127.0.0.1:8080/;
+    }
 
     location /ipfs/api/v0/add {
         proxy_set_header Host $host;
@@ -16,5 +23,4 @@ server {
     location / {
         proxy_pass http://127.0.0.1:8000;
     }
-
 }
