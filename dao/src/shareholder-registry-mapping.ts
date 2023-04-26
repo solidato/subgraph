@@ -64,6 +64,7 @@ export function handleStatusChanged(event: StatusChanged): void {
 
   const daoUser =
     DaoUser.load(addressHexString) || new DaoUser(addressHexString);
+
   if (daoUser) {
     daoUser.address = address;
     daoUser.save();

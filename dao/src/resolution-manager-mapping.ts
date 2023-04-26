@@ -320,27 +320,22 @@ export function handleResolutionTypeCreated(
     );
 
     const resolutionManager = ResolutionManager.bind(event.address);
-    const result = resolutionManager.try_resolutionTypes(
+
+    const resolutionType = resolutionManager.resolutionTypes(
       event.params.typeIndex
     );
 
-    if (!result.reverted) {
-      const resolutionType = result.value;
-      newResolutionTypeEntity.name = resolutionType.getName();
-      newResolutionTypeEntity.quorum = resolutionType.getQuorum();
-      newResolutionTypeEntity.noticePeriod = resolutionType.getNoticePeriod();
-      newResolutionTypeEntity.votingPeriod = resolutionType.getVotingPeriod();
-      newResolutionTypeEntity.canBeNegative = resolutionType.getCanBeNegative();
+    newResolutionTypeEntity.name = resolutionType.getName();
+    newResolutionTypeEntity.quorum = resolutionType.getQuorum();
+    newResolutionTypeEntity.noticePeriod = resolutionType.getNoticePeriod();
+    newResolutionTypeEntity.votingPeriod = resolutionType.getVotingPeriod();
+    newResolutionTypeEntity.canBeNegative = resolutionType.getCanBeNegative();
 
-      daoManagerEntity.resolutionTypes = daoManagerEntity.resolutionTypes.concat(
-        [newResolutionTypeEntity.id]
-      );
-      daoManagerEntity.save();
-      newResolutionTypeEntity.save();
-    } else {
-      log.error("Trying to create non-existing resolution type {}", [
-        event.params.typeIndex.toString(),
-      ]);
-    }
+    daoManagerEntity.resolutionTypes = daoManagerEntity.resolutionTypes.concat([
+      newResolutionTypeEntity.id,
+    ]);
+
+    daoManagerEntity.save();
+    newResolutionTypeEntity.save();
   }
 }
