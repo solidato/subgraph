@@ -1,9 +1,10 @@
 import { log } from "@graphprotocol/graph-ts";
-import { DaoUser, Offer } from "../generated/schema";
+import { Offer } from "../generated/schema";
 import {
   OfferCreated,
   OfferMatched,
 } from "../generated/InternalMarket/InternalMarket";
+import { getDaoUser } from "./dao-user";
 
 export function handleOfferCreated(event: OfferCreated): void {
   const fromHexString = event.params.from.toHexString();
@@ -37,7 +38,7 @@ export function handleOfferMatched(event: OfferMatched): void {
   offerEntity.amount = offerEntity.amount.minus(event.params.amount);
   offerEntity.save();
 
-  const fromDaoUser = DaoUser.load(fromHexString) || new DaoUser(fromHexString);
+  const fromDaoUser = getDaoUser(fromHexString);
 
   if (fromDaoUser) {
     fromDaoUser.unlockedTempBalance = fromDaoUser.unlockedTempBalance.plus(

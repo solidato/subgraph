@@ -1,7 +1,7 @@
 import { StatusChanged } from "../generated/ShareholderRegistry/ShareholderRegistry";
 import { log, Bytes } from "@graphprotocol/graph-ts";
 import { getDaoManagerEntity } from "./dao-manager";
-import { DaoUser } from "../generated/schema";
+import { getDaoUser } from "./dao-user";
 
 // todo ask Nicola/Alberto if we can have a mapping in the contract (or these strings will be like this "forever")
 
@@ -62,13 +62,10 @@ export function handleStatusChanged(event: StatusChanged): void {
     ]
   );
 
-  const daoUser =
-    DaoUser.load(addressHexString) || new DaoUser(addressHexString);
+  const daoUser = getDaoUser(addressHexString);
 
-  if (daoUser) {
-    daoUser.address = address;
-    daoUser.save();
-  }
+  daoUser.address = address;
+  daoUser.save();
 
   // remove the address from the "previous" list/s
   if (previousHexString == MANAGING_BOARD_STATUS) {
