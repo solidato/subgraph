@@ -58,9 +58,15 @@ type Offer @entity {
 type DaoUser @entity {
   id: ID!
   address: Bytes!
-  totalBalance: BigInt!
-  vestingBalance: BigInt!
-  unlockedTempBalance: BigInt!
+
+  governanceBalance: BigInt!
+  governanceOfferedTempBalance: BigInt!
+  governanceVestingBalance: BigInt!
+  governanceVaultedBalance: BigInt!
+  governanceWithdrawableTempBalance: BigInt!
+  votingPower: BigInt!
+  shareholderRegistryBalance: BigInt!
+  neokigdomTokenBalance: BigInt!
 }
 
 type DaoManager @entity {
@@ -70,4 +76,6 @@ type DaoManager @entity {
   shareholdersAddresses: [Bytes!]!
   investorsAddresses: [Bytes!]!
   resolutionTypes: [ResolutionType!]!
+
+  totalVotingPower: BigInt!
 }

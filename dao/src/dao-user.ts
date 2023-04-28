@@ -9,9 +9,15 @@ export function getDaoUser(fromHexString: string): DaoUser {
 
   const newDaoUser = new DaoUser(fromHexString);
   newDaoUser.address = Bytes.empty();
-  newDaoUser.totalBalance = BigInt.fromI32(0);
-  newDaoUser.vestingBalance = BigInt.fromI32(0);
-  newDaoUser.unlockedTempBalance = BigInt.fromI32(0);
+
+  newDaoUser.governanceBalance = BigInt.fromI32(0);
+  newDaoUser.governanceOfferedTempBalance = BigInt.fromI32(0);
+  newDaoUser.governanceWithdrawableTempBalance = BigInt.fromI32(0);
+  newDaoUser.governanceVaultedBalance = BigInt.fromI32(0);
+  newDaoUser.governanceVestingBalance = BigInt.fromI32(0);
+  newDaoUser.neokigdomTokenBalance = BigInt.fromI32(0);
+  newDaoUser.shareholderRegistryBalance = BigInt.fromI32(0);
+  newDaoUser.votingPower = BigInt.fromI32(0);
 
   return newDaoUser;
 }

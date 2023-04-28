@@ -4,7 +4,6 @@ import {
   OfferCreated,
   OfferMatched,
 } from "../generated/InternalMarket/InternalMarket";
-import { getDaoUser } from "./dao-user";
 
 export function handleOfferCreated(event: OfferCreated): void {
   const fromHexString = event.params.from.toHexString();
@@ -15,9 +14,7 @@ export function handleOfferCreated(event: OfferCreated): void {
 
   offerEntity.from = event.params.from;
   offerEntity.amount = event.params.amount;
-  // todo once contracts will update we will have `expiredAt` as param.
-  // right now `createdAt` is the actual expiration date (PR done in the contracts)
-  offerEntity.expirationTimestamp = event.params.createdAt;
+  offerEntity.expirationTimestamp = event.params.expiredAt;
   offerEntity.createTimestamp = event.block.timestamp;
 
   offerEntity.save();
@@ -37,14 +34,4 @@ export function handleOfferMatched(event: OfferMatched): void {
 
   offerEntity.amount = offerEntity.amount.minus(event.params.amount);
   offerEntity.save();
-
-  const fromDaoUser = getDaoUser(fromHexString);
-
-  if (fromDaoUser) {
-    fromDaoUser.unlockedTempBalance = fromDaoUser.unlockedTempBalance.plus(
-      event.params.amount
-    );
-
-    fromDaoUser.save();
-  }
 }

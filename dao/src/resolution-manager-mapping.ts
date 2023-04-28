@@ -98,6 +98,8 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
     resolutionEntity.snapshotId = blockChainResolution.getSnapshotId();
     resolutionEntity.hasQuorum = resolutionEntity.isNegative;
 
+    // todo remember to pay attention whenever we will implement the distrust vote
+
     for (
       let index = 0;
       index < daoManagerEntity.contributorsAddresses.length;

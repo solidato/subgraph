@@ -112,3 +112,20 @@ dataSources:
         - event: VestingSet(address,uint256)
           handler: handleVestingSet
       file: ./src/governance-token-mapping.ts
+  - kind: ethereum
+    name: NeokingdomToken
+    source:
+      abi: NeokingdomToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: NeokingdomToken
+          file: ./abis/NeokingdomToken.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/neokingdom-token-mapping.ts

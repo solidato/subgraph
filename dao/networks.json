@@ -1,24 +1,44 @@
 {
   "tevmos": {
-    "GovernanceToken": {
-      "address": "0xfAb035215AD1E087e1A9b366732021684612a9a7",
-      "startBlock": 13699049
+    "DAORoles": {
+      "address": "0x3EC610F22E42124dC083c070631B121FC77453dd",
+      "startBlock": 13879031
     },
-    "ResolutionManager": {
-      "address": "0x947F49E4342f84088293bF8bB01d7Ae1996F2ae7",
-      "startBlock": 13699090
+    "TokenMock": {
+      "address": "0xe5E0b74752D72d2937A558Ad674980b84697645F",
+      "startBlock": 13879033
     },
-    "ShareholderRegistry": {
-      "address": "0x4AfF2Eb468C9644F7F5894EFD90427F099A18835",
-      "startBlock": 13699084
+    "PriceOracle": {
+      "address": "0x167505791d5acB78AE7a9fF2EaE7357457d59dcB",
+      "startBlock": 13879034
     },
     "Voting": {
-      "address": "0x6FEe007A1314bBc8D2E9bA10a62616dcC06cE678",
-      "startBlock": 13699044
+      "address": "0xe8b4Dc8520270916c1E53964403c0f0Db4e32ebe",
+      "startBlock": 13879036
+    },
+    "GovernanceToken": {
+      "address": "0xD1cEF8653B2099ca5453519486CDDcd8D5508756",
+      "startBlock": 13879037
+    },
+    "NeokingdomToken": {
+      "address": "0x0a8AbF047375353FbD8b1704bB04c2D2bF4a9FDc",
+      "startBlock": 13879041
+    },
+    "RedemptionController": {
+      "address": "0x82921e878533b554C7Bc8C3Bc4baAdc4B9d33899",
+      "startBlock": 13879043
     },
     "InternalMarket": {
-      "address": "0x0D110d678C3E48fBa380a5DEa568f9834286d504",
-      "startBlock": 13699074
+      "address": "0x74Ffe70F09e335Baf0db5Ab9e06F3B5C1C887E88",
+      "startBlock": 13879044
+    },
+    "ShareholderRegistry": {
+      "address": "0xd309E36B83f398537ADaE802252B4f901cfd7B4b",
+      "startBlock": 13879045
+    },
+    "ResolutionManager": {
+      "address": "0x26A8848Ba08f0871b15Bdd40cFb8F893D767C0Ed",
+      "startBlock": 13879048
     }
   }
 }

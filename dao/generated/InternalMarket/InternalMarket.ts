@@ -53,7 +53,7 @@ export class OfferCreated__Params {
     return this._event.parameters[2].value.toBigInt();
   }
 
-  get createdAt(): BigInt {
+  get expiredAt(): BigInt {
     return this._event.parameters[3].value.toBigInt();
   }
 }

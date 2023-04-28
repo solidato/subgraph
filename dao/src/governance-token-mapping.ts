@@ -1,36 +1,78 @@
 import { Address } from "@graphprotocol/graph-ts";
 import {
+  GovernanceToken,
   Transfer,
   VestingSet,
 } from "../generated/GovernanceToken/GovernanceToken";
-import { getDaoManagerEntity } from "./dao-manager";
 import { getDaoUser } from "./dao-user";
+import { Voting } from "../generated/Voting/Voting";
+import {
+  GOVERNANCE_TOKEN_CONTRACT_ADDRESS,
+  INTERNAL_MARKET_CONTRACT_ADDRESS,
+  VOTING_CONTRACT_ADDRESS,
+} from "../generated/addresses";
+import { InternalMarket } from "../generated/InternalMarket/InternalMarket";
 
 export function handleTransfer(event: Transfer): void {
-  const fromHexString = event.params.from.toHexString();
-  const toHexString = event.params.to.toHexString();
-  const value = event.params.value;
+  const addressTo = event.params.to;
+  const addressFrom = event.params.from;
 
-  if (event.params.from != Address.zero()) {
-    const daoManagerEntity = getDaoManagerEntity();
-    const fromDaoUser = getDaoUser(fromHexString);
-    fromDaoUser.totalBalance = fromDaoUser.totalBalance.minus(value);
-    fromDaoUser.address = event.params.from;
+  const addressToHex = event.params.to.toHexString();
+  const addressFromHex = event.params.from.toHexString();
 
-    // if from address is contributor, we should remove value from their unlocked temp balance
-    if (daoManagerEntity.contributorsAddresses.includes(event.params.from)) {
-      fromDaoUser.unlockedTempBalance = fromDaoUser.unlockedTempBalance.minus(
-        value
-      );
-    }
+  const votingContract = Voting.bind(
+    Address.fromString(VOTING_CONTRACT_ADDRESS)
+  );
 
-    fromDaoUser.save();
+  const internalMarketContract = InternalMarket.bind(
+    Address.fromString(INTERNAL_MARKET_CONTRACT_ADDRESS)
+  );
+
+  const governanceTokenContract = GovernanceToken.bind(
+    Address.fromString(GOVERNANCE_TOKEN_CONTRACT_ADDRESS)
+  );
+
+  if (addressFrom != Address.zero()) {
+    const daoUserFrom = getDaoUser(addressFromHex);
+    daoUserFrom.address = addressFrom;
+    daoUserFrom.votingPower = votingContract.getVotingPower(addressFrom);
+    const governanceWithdrawableTempBalance = internalMarketContract.withdrawableBalanceOf(
+      addressFrom
+    );
+    const governanceOfferedTempBalance = internalMarketContract.offeredBalanceOf(
+      addressFrom
+    );
+    daoUserFrom.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
+    daoUserFrom.governanceOfferedTempBalance = governanceOfferedTempBalance;
+    daoUserFrom.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
+      governanceOfferedTempBalance
+    );
+    daoUserFrom.governanceBalance = governanceTokenContract.balanceOf(
+      addressFrom
+    );
+
+    daoUserFrom.save();
   }
 
-  const toDaoUser = getDaoUser(toHexString);
-  toDaoUser.totalBalance = toDaoUser.totalBalance.plus(value);
-  toDaoUser.address = event.params.to;
-  toDaoUser.save();
+  if (addressTo != Address.zero()) {
+    const daoUserTo = getDaoUser(addressToHex);
+    daoUserTo.address = addressTo;
+    daoUserTo.votingPower = votingContract.getVotingPower(addressTo);
+    const governanceWithdrawableTempBalance = internalMarketContract.withdrawableBalanceOf(
+      addressTo
+    );
+    const governanceOfferedTempBalance = internalMarketContract.offeredBalanceOf(
+      addressTo
+    );
+    daoUserTo.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
+    daoUserTo.governanceOfferedTempBalance = governanceOfferedTempBalance;
+    daoUserTo.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
+      governanceOfferedTempBalance
+    );
+    daoUserTo.governanceBalance = governanceTokenContract.balanceOf(addressTo);
+
+    daoUserTo.save();
+  }
 }
 
 export function handleVestingSet(event: VestingSet): void {
@@ -38,6 +80,6 @@ export function handleVestingSet(event: VestingSet): void {
 
   const toDaoUser = getDaoUser(toHexString);
 
-  toDaoUser.vestingBalance = event.params.amount;
+  toDaoUser.governanceVestingBalance = event.params.amount;
   toDaoUser.save();
 }

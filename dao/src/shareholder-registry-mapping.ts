@@ -1,7 +1,16 @@
-import { StatusChanged } from "../generated/ShareholderRegistry/ShareholderRegistry";
-import { log, Bytes } from "@graphprotocol/graph-ts";
+import {
+  ShareholderRegistry,
+  StatusChanged,
+  Transfer,
+} from "../generated/ShareholderRegistry/ShareholderRegistry";
+import { log, Bytes, Address } from "@graphprotocol/graph-ts";
 import { getDaoManagerEntity } from "./dao-manager";
 import { getDaoUser } from "./dao-user";
+import { Voting } from "../generated/Voting/Voting";
+import {
+  SHAREHOLDER_REGISTRY_CONTRACT_ADDRESS,
+  VOTING_CONTRACT_ADDRESS,
+} from "../generated/addresses";
 
 // todo ask Nicola/Alberto if we can have a mapping in the contract (or these strings will be like this "forever")
 
@@ -135,4 +144,40 @@ export function handleStatusChanged(event: StatusChanged): void {
 
   daoMangerEntity.save();
   return;
+}
+
+export function handleTransfer(event: Transfer) {
+  const addressTo = event.params.to;
+  const addressFrom = event.params.from;
+
+  const addressToHex = event.params.to.toHexString();
+  const addressFromHex = event.params.from.toHexString();
+
+  const votingContract = Voting.bind(
+    Address.fromString(VOTING_CONTRACT_ADDRESS)
+  );
+  const shareholderRegistryContract = ShareholderRegistry.bind(
+    Address.fromString(SHAREHOLDER_REGISTRY_CONTRACT_ADDRESS)
+  );
+
+  if (addressTo != Address.zero()) {
+    const daoUserTo = getDaoUser(addressToHex);
+    daoUserTo.votingPower = votingContract.getVotingPower(addressTo);
+    daoUserTo.shareholderRegistryBalance = shareholderRegistryContract.balanceOf(
+      addressTo
+    );
+    daoUserTo.save();
+  }
+
+  if (addressFrom != Address.zero()) {
+    const daoUserFrom = getDaoUser(addressFromHex);
+    daoUserFrom.votingPower = votingContract.getVotingPower(addressFrom);
+    daoUserFrom.shareholderRegistryBalance = shareholderRegistryContract.balanceOf(
+      addressFrom
+    );
+    daoUserFrom.save();
+  }
+
+  const daoManager = getDaoManagerEntity();
+  daoManager.totalVotingPower = votingContract.getTotalVotingPower();
 }

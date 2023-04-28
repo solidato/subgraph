@@ -744,8 +744,8 @@ export class DaoUser extends Entity {
     this.set("address", Value.fromBytes(value));
   }
 
-  get totalBalance(): BigInt {
-    let value = this.get("totalBalance");
+  get governanceBalance(): BigInt {
+    let value = this.get("governanceBalance");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -753,12 +753,12 @@ export class DaoUser extends Entity {
     }
   }
 
-  set totalBalance(value: BigInt) {
-    this.set("totalBalance", Value.fromBigInt(value));
+  set governanceBalance(value: BigInt) {
+    this.set("governanceBalance", Value.fromBigInt(value));
   }
 
-  get vestingBalance(): BigInt {
-    let value = this.get("vestingBalance");
+  get governanceOfferedTempBalance(): BigInt {
+    let value = this.get("governanceOfferedTempBalance");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -766,12 +766,12 @@ export class DaoUser extends Entity {
     }
   }
 
-  set vestingBalance(value: BigInt) {
-    this.set("vestingBalance", Value.fromBigInt(value));
+  set governanceOfferedTempBalance(value: BigInt) {
+    this.set("governanceOfferedTempBalance", Value.fromBigInt(value));
   }
 
-  get unlockedTempBalance(): BigInt {
-    let value = this.get("unlockedTempBalance");
+  get governanceVestingBalance(): BigInt {
+    let value = this.get("governanceVestingBalance");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -779,8 +779,73 @@ export class DaoUser extends Entity {
     }
   }
 
-  set unlockedTempBalance(value: BigInt) {
-    this.set("unlockedTempBalance", Value.fromBigInt(value));
+  set governanceVestingBalance(value: BigInt) {
+    this.set("governanceVestingBalance", Value.fromBigInt(value));
+  }
+
+  get governanceVaultedBalance(): BigInt {
+    let value = this.get("governanceVaultedBalance");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set governanceVaultedBalance(value: BigInt) {
+    this.set("governanceVaultedBalance", Value.fromBigInt(value));
+  }
+
+  get governanceWithdrawableTempBalance(): BigInt {
+    let value = this.get("governanceWithdrawableTempBalance");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set governanceWithdrawableTempBalance(value: BigInt) {
+    this.set("governanceWithdrawableTempBalance", Value.fromBigInt(value));
+  }
+
+  get votingPower(): BigInt {
+    let value = this.get("votingPower");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set votingPower(value: BigInt) {
+    this.set("votingPower", Value.fromBigInt(value));
+  }
+
+  get shareholderRegistryBalance(): BigInt {
+    let value = this.get("shareholderRegistryBalance");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set shareholderRegistryBalance(value: BigInt) {
+    this.set("shareholderRegistryBalance", Value.fromBigInt(value));
+  }
+
+  get neokigdomTokenBalance(): BigInt {
+    let value = this.get("neokigdomTokenBalance");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set neokigdomTokenBalance(value: BigInt) {
+    this.set("neokigdomTokenBalance", Value.fromBigInt(value));
   }
 }
 
@@ -882,5 +947,18 @@ export class DaoManager extends Entity {
 
   set resolutionTypes(value: Array<string>) {
     this.set("resolutionTypes", Value.fromStringArray(value));
+  }
+
+  get totalVotingPower(): BigInt {
+    let value = this.get("totalVotingPower");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set totalVotingPower(value: BigInt) {
+    this.set("totalVotingPower", Value.fromBigInt(value));
   }
 }
