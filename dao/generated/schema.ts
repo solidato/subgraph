@@ -874,19 +874,6 @@ export class DaoUser extends Entity {
     this.set("neokigdomTokenBalance", Value.fromBigInt(value));
   }
 
-  get lastGovernanceTokenTransferTimestamp(): BigInt {
-    let value = this.get("lastGovernanceTokenTransferTimestamp");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set lastGovernanceTokenTransferTimestamp(value: BigInt) {
-    this.set("lastGovernanceTokenTransferTimestamp", Value.fromBigInt(value));
-  }
-
   get activeOffers(): Array<string> {
     let value = this.get("activeOffers");
     if (!value || value.kind == ValueKind.NULL) {

@@ -71,7 +71,6 @@ type DaoUser @entity {
   shareholderRegistryBalance: BigInt!
   neokigdomTokenBalance: BigInt!
 
-  lastGovernanceTokenTransferTimestamp: BigInt!
   activeOffers: [Offer!]!
 }
 
