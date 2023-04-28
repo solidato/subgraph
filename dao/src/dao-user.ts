@@ -18,6 +18,7 @@ export function getDaoUser(fromHexString: string): DaoUser {
   newDaoUser.neokigdomTokenBalance = BigInt.fromI32(0);
   newDaoUser.shareholderRegistryBalance = BigInt.fromI32(0);
   newDaoUser.votingPower = BigInt.fromI32(0);
+  newDaoUser.activeOffers = [];
 
   return newDaoUser;
 }

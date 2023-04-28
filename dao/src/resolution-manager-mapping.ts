@@ -97,6 +97,9 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
     resolutionEntity.approveBy = event.transaction.from;
     resolutionEntity.snapshotId = blockChainResolution.getSnapshotId();
     resolutionEntity.hasQuorum = resolutionEntity.isNegative;
+    resolutionEntity.totalVotingPower = voting.getTotalVotingPowerAt(
+      resolutionEntity.snapshotId
+    );
 
     // todo remember to pay attention whenever we will implement the distrust vote
 

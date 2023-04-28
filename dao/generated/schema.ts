@@ -544,6 +544,19 @@ export class Resolution extends Entity {
   set addressedContributor(value: Bytes) {
     this.set("addressedContributor", Value.fromBytes(value));
   }
+
+  get totalVotingPower(): BigInt {
+    let value = this.get("totalVotingPower");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set totalVotingPower(value: BigInt) {
+    this.set("totalVotingPower", Value.fromBigInt(value));
+  }
 }
 
 export class DelegationUser extends Entity {
@@ -693,6 +706,19 @@ export class Offer extends Entity {
 
   set createTimestamp(value: BigInt) {
     this.set("createTimestamp", Value.fromBigInt(value));
+  }
+
+  get expiredOnTransfer(): boolean {
+    let value = this.get("expiredOnTransfer");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set expiredOnTransfer(value: boolean) {
+    this.set("expiredOnTransfer", Value.fromBoolean(value));
   }
 }
 
@@ -846,6 +872,32 @@ export class DaoUser extends Entity {
 
   set neokigdomTokenBalance(value: BigInt) {
     this.set("neokigdomTokenBalance", Value.fromBigInt(value));
+  }
+
+  get lastGovernanceTokenTransferTimestamp(): BigInt {
+    let value = this.get("lastGovernanceTokenTransferTimestamp");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set lastGovernanceTokenTransferTimestamp(value: BigInt) {
+    this.set("lastGovernanceTokenTransferTimestamp", Value.fromBigInt(value));
+  }
+
+  get activeOffers(): Array<string> {
+    let value = this.get("activeOffers");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set activeOffers(value: Array<string>) {
+    this.set("activeOffers", Value.fromStringArray(value));
   }
 }
 

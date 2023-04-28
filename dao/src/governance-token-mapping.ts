@@ -12,13 +12,53 @@ import {
   VOTING_CONTRACT_ADDRESS,
 } from "../generated/addresses";
 import { InternalMarket } from "../generated/InternalMarket/InternalMarket";
+import { Offer } from "../generated/schema";
+
+const saveDaoUserData = (
+  votingContract: Voting,
+  internalMarketContract: InternalMarket,
+  governanceTokenContract: GovernanceToken,
+  event: Transfer,
+  userAddress: Address
+): void => {
+  if (userAddress != Address.zero()) {
+    const daoUser = getDaoUser(userAddress.toHexString());
+    daoUser.address = userAddress;
+    daoUser.votingPower = votingContract.getVotingPower(userAddress);
+    const governanceWithdrawableTempBalance = internalMarketContract.withdrawableBalanceOf(
+      userAddress
+    );
+    const governanceOfferedTempBalance = internalMarketContract.offeredBalanceOf(
+      userAddress
+    );
+    daoUser.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
+    daoUser.governanceOfferedTempBalance = governanceOfferedTempBalance;
+    daoUser.governanceVaultedBalance = governanceTokenContract.balanceOf(
+      userAddress
+    );
+    daoUser.governanceVestingBalance = governanceTokenContract.vestingBalanceOf(
+      userAddress
+    );
+    const newActiveOffers: string[] = [];
+    for (let index = 0; index < daoUser.activeOffers.length; index++) {
+      const offerId = daoUser.activeOffers[index];
+      const offer = Offer.load(offerId);
+      if (offer && offer.expirationTimestamp >= event.block.timestamp) {
+        newActiveOffers.push(offer.id);
+      }
+      if (offer && offer.expirationTimestamp < event.block.timestamp) {
+        offer.expiredOnTransfer = true;
+        offer.save();
+      }
+    }
+    daoUser.activeOffers = newActiveOffers;
+    daoUser.save();
+  }
+};
 
 export function handleTransfer(event: Transfer): void {
   const addressTo = event.params.to;
   const addressFrom = event.params.from;
-
-  const addressToHex = event.params.to.toHexString();
-  const addressFromHex = event.params.from.toHexString();
 
   const votingContract = Voting.bind(
     Address.fromString(VOTING_CONTRACT_ADDRESS)
@@ -32,47 +72,21 @@ export function handleTransfer(event: Transfer): void {
     Address.fromString(GOVERNANCE_TOKEN_CONTRACT_ADDRESS)
   );
 
-  if (addressFrom != Address.zero()) {
-    const daoUserFrom = getDaoUser(addressFromHex);
-    daoUserFrom.address = addressFrom;
-    daoUserFrom.votingPower = votingContract.getVotingPower(addressFrom);
-    const governanceWithdrawableTempBalance = internalMarketContract.withdrawableBalanceOf(
-      addressFrom
-    );
-    const governanceOfferedTempBalance = internalMarketContract.offeredBalanceOf(
-      addressFrom
-    );
-    daoUserFrom.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
-    daoUserFrom.governanceOfferedTempBalance = governanceOfferedTempBalance;
-    daoUserFrom.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
-      governanceOfferedTempBalance
-    );
-    daoUserFrom.governanceBalance = governanceTokenContract.balanceOf(
-      addressFrom
-    );
+  saveDaoUserData(
+    votingContract,
+    internalMarketContract,
+    governanceTokenContract,
+    event,
+    addressFrom
+  );
 
-    daoUserFrom.save();
-  }
-
-  if (addressTo != Address.zero()) {
-    const daoUserTo = getDaoUser(addressToHex);
-    daoUserTo.address = addressTo;
-    daoUserTo.votingPower = votingContract.getVotingPower(addressTo);
-    const governanceWithdrawableTempBalance = internalMarketContract.withdrawableBalanceOf(
-      addressTo
-    );
-    const governanceOfferedTempBalance = internalMarketContract.offeredBalanceOf(
-      addressTo
-    );
-    daoUserTo.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
-    daoUserTo.governanceOfferedTempBalance = governanceOfferedTempBalance;
-    daoUserTo.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
-      governanceOfferedTempBalance
-    );
-    daoUserTo.governanceBalance = governanceTokenContract.balanceOf(addressTo);
-
-    daoUserTo.save();
-  }
+  saveDaoUserData(
+    votingContract,
+    internalMarketContract,
+    governanceTokenContract,
+    event,
+    addressTo
+  );
 }
 
 export function handleVestingSet(event: VestingSet): void {

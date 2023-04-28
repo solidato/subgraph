@@ -39,6 +39,7 @@ type Resolution @entity {
   executionData: [Bytes!]!
   executionTimestamp: BigInt
   addressedContributor: Bytes!
+  totalVotingPower: BigInt!
 }
 
 type DelegationUser @entity {
@@ -53,6 +54,8 @@ type Offer @entity {
   amount: BigInt!
   expirationTimestamp: BigInt!
   createTimestamp: BigInt!
+
+  expiredOnTransfer: Boolean!
 }
 
 type DaoUser @entity {
@@ -67,6 +70,9 @@ type DaoUser @entity {
   votingPower: BigInt!
   shareholderRegistryBalance: BigInt!
   neokigdomTokenBalance: BigInt!
+
+  lastGovernanceTokenTransferTimestamp: BigInt!
+  activeOffers: [Offer!]!
 }
 
 type DaoManager @entity {
