@@ -1,3 +1,4 @@
+import { BigInt } from "@graphprotocol/graph-ts";
 import { DaoManager } from "../generated/schema";
 
 const DAO_MANAGER_ID = "0"; // we treat this as a "singleton"
@@ -15,6 +16,7 @@ export function getDaoManagerEntity(): DaoManager {
   newDaoManagerEntity.managingBoardAddresses = [];
   newDaoManagerEntity.shareholdersAddresses = [];
   newDaoManagerEntity.investorsAddresses = [];
+  newDaoManagerEntity.totalVotingPower = BigInt.fromI32(0);
 
   return newDaoManagerEntity;
 }
