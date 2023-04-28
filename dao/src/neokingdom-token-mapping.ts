@@ -6,7 +6,7 @@ import {
 import { NEOKINGDOM_TOKEN_CONTRACT_ADDRESS } from "../generated/addresses";
 import { getDaoUser } from "./dao-user";
 
-export function handleTransfer(event: Transfer) {
+export function handleTransfer(event: Transfer): void {
   const addressTo = event.params.to;
   const addressFrom = event.params.from;
 

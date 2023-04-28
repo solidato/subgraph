@@ -56,6 +56,8 @@ dataSources:
       eventHandlers:
         - event: StatusChanged(indexed address,bytes32,bytes32)
           handler: handleStatusChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
       file: ./src/shareholder-registry-mapping.ts
   - kind: ethereum
     name: Voting

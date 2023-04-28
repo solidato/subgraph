@@ -146,12 +146,12 @@ export function handleStatusChanged(event: StatusChanged): void {
   return;
 }
 
-export function handleTransfer(event: Transfer) {
-  const addressTo = event.params.to;
+export function handleTransfer(event: Transfer): void {
   const addressFrom = event.params.from;
+  const addressTo = event.params.to;
 
-  const addressToHex = event.params.to.toHexString();
   const addressFromHex = event.params.from.toHexString();
+  const addressToHex = event.params.to.toHexString();
 
   const votingContract = Voting.bind(
     Address.fromString(VOTING_CONTRACT_ADDRESS)
@@ -160,15 +160,6 @@ export function handleTransfer(event: Transfer) {
     Address.fromString(SHAREHOLDER_REGISTRY_CONTRACT_ADDRESS)
   );
 
-  if (addressTo != Address.zero()) {
-    const daoUserTo = getDaoUser(addressToHex);
-    daoUserTo.votingPower = votingContract.getVotingPower(addressTo);
-    daoUserTo.shareholderRegistryBalance = shareholderRegistryContract.balanceOf(
-      addressTo
-    );
-    daoUserTo.save();
-  }
-
   if (addressFrom != Address.zero()) {
     const daoUserFrom = getDaoUser(addressFromHex);
     daoUserFrom.votingPower = votingContract.getVotingPower(addressFrom);
@@ -176,6 +167,15 @@ export function handleTransfer(event: Transfer) {
       addressFrom
     );
     daoUserFrom.save();
+  }
+
+  if (addressTo != Address.zero()) {
+    const daoUserTo = getDaoUser(addressToHex);
+    daoUserTo.votingPower = votingContract.getVotingPower(addressTo);
+    daoUserTo.shareholderRegistryBalance = shareholderRegistryContract.balanceOf(
+      addressTo
+    );
+    daoUserTo.save();
   }
 
   const daoManager = getDaoManagerEntity();
