@@ -13,6 +13,7 @@ import {
 } from "../generated/addresses";
 import { InternalMarket } from "../generated/InternalMarket/InternalMarket";
 import { Offer } from "../generated/schema";
+import { getDaoManagerEntity } from "./dao-manager";
 
 const saveDaoUserData = (
   votingContract: Voting,
@@ -87,6 +88,10 @@ export function handleTransfer(event: Transfer): void {
     event,
     addressTo
   );
+
+  const daoManagerEntity = getDaoManagerEntity();
+  daoManagerEntity.totalVotingPower = votingContract.getTotalVotingPower();
+  daoManagerEntity.save();
 }
 
 export function handleVestingSet(event: VestingSet): void {
