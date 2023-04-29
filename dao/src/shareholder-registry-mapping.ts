@@ -178,6 +178,7 @@ export function handleTransfer(event: Transfer): void {
     daoUserTo.save();
   }
 
-  const daoManager = getDaoManagerEntity();
-  daoManager.totalVotingPower = votingContract.getTotalVotingPower();
+  const daoManagerEntity = getDaoManagerEntity();
+  daoManagerEntity.totalVotingPower = votingContract.getTotalVotingPower();
+  daoManagerEntity.save();
 }
