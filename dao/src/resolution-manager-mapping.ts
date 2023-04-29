@@ -47,6 +47,7 @@ const setValuesFromResolutionContract = (
   resolutionEntity.isNegative = blockChainResolution.getIsNegative();
   resolutionEntity.ipfsDataURI = ipfsDataURI;
   resolutionEntity.addressedContributor = blockChainResolution.getAddressedContributor();
+  resolutionEntity.snapshotId = blockChainResolution.getSnapshotId();
 
   const executionTo: Bytes[] = [];
   for (let index = 0; index < executionDetails.value0.length; index++) {
