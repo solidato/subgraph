@@ -175,6 +175,18 @@ export function handleResolutionCreated(event: ResolutionCreated): void {
     resolutionEntity.createTimestamp = event.block.timestamp;
     resolutionEntity.createBy = event.transaction.from;
 
+    resolutionEntity.updateTimestamp = BigInt.fromI32(0);
+    resolutionEntity.updateBy = Address.empty();
+
+    resolutionEntity.rejectTimestamp = BigInt.fromI32(0);
+    resolutionEntity.rejectBy = Address.empty();
+
+    resolutionEntity.executionTimestamp = BigInt.fromI32(0);
+    resolutionEntity.totalVotingPower = BigInt.fromI32(0);
+
+    resolutionEntity.voters = [];
+    resolutionEntity.hasQuorum = false;
+
     setValuesFromResolutionContract(
       resolutionEntity,
       blockChainResolution,
