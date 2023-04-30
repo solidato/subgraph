@@ -34,9 +34,10 @@ const saveDaoUserData = (
     );
     daoUser.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
     daoUser.governanceOfferedTempBalance = governanceOfferedTempBalance;
-    daoUser.governanceVaultedBalance = governanceTokenContract.balanceOf(
-      userAddress
+    daoUser.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
+      governanceOfferedTempBalance
     );
+    daoUser.governanceBalance = governanceTokenContract.balanceOf(userAddress);
     daoUser.governanceVestingBalance = governanceTokenContract.vestingBalanceOf(
       userAddress
     );
