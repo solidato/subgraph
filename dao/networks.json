@@ -1,44 +1,44 @@
 {
   "tevmos": {
     "DAORoles": {
-      "address": "0x9b26e32A51BfD2CC7188cbc798b9f0df94076c4e",
-      "startBlock": 13936248
+      "address": "0xcCB6F17f64A8B25a81E5937bCbA9D6fC02C64d07",
+      "startBlock": 13879948
     },
     "TokenMock": {
-      "address": "0x649849750b5F1cC118aa9b4b556162449Ff7C458",
-      "startBlock": 13936250
+      "address": "0x5ac205f3B2108019D5D2645b944032927f4EDe7d",
+      "startBlock": 13879952
     },
     "PriceOracle": {
-      "address": "0x881Ed50f66752c567eB578e8Cd1aB7A51878f9bA",
-      "startBlock": 13936251
+      "address": "0x7171b0f271B79B15390Df944eE394D22598D0b49",
+      "startBlock": 13879953
     },
     "Voting": {
-      "address": "0x6f2B00D80984945879fd981613ac980107C41b52",
-      "startBlock": 13936252
+      "address": "0xB8742fe8434307221D4f5ed6bee20BFB11499035",
+      "startBlock": 13935879
     },
     "GovernanceToken": {
-      "address": "0x4A59920b0d755e67A3fbb9fa2347Fb9274213F6f",
-      "startBlock": 13936253
+      "address": "0x65C0F38C939ccfa858DdF75CACD21c380def4Df3",
+      "startBlock": 13935881
     },
     "NeokingdomToken": {
-      "address": "0x37cEDd38ee432AcBeb8232fA068272eF385C5499",
-      "startBlock": 13936256
+      "address": "0xAB31f4ED9E3462B53e272E4Edb3Eafc37F867465",
+      "startBlock": 13935885
     },
     "RedemptionController": {
-      "address": "0x8268a941307c1dAf1AC027Eb654bc77450f4de88",
-      "startBlock": 13936258
+      "address": "0x48783Db55F298682d65c332eD0314cBfeba2608a",
+      "startBlock": 13879962
     },
     "InternalMarket": {
-      "address": "0xC2409dFf1Ba51Dd4707EdE00134b2FbF34a208B4",
-      "startBlock": 13936259
+      "address": "0x54e7F54f55cD977B43BbBc68eE97Dd64d968fC9D",
+      "startBlock": 13935888
     },
     "ShareholderRegistry": {
-      "address": "0x10e7eAcDAE134F799B31E0d10EAeC0E79Ba0E832",
-      "startBlock": 13936262
+      "address": "0x3B8591fc4B4a3aD4881A7AF1aF8FcAfea5294808",
+      "startBlock": 13935890
     },
     "ResolutionManager": {
-      "address": "0x6b5a6CEB18b84827EdFCF89EdeF88aA0B2C26f98",
-      "startBlock": 13936263
+      "address": "0xdAcd968B975C90E3a4df210e8e9E206E1f8039f4",
+      "startBlock": 13935892
     }
   }
 }
