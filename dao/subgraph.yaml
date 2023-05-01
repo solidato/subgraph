@@ -114,6 +114,8 @@ dataSources:
           file: ./abis/Voting.json
         - name: InternalMarket
           file: ./abis/InternalMarket.json
+        - name: NeokingdomToken
+          file: ./abis/NeokingdomToken.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
@@ -133,6 +135,12 @@ dataSources:
       abis:
         - name: NeokingdomToken
           file: ./abis/NeokingdomToken.json
+        - name: GovernanceToken
+          file: ./abis/GovernanceToken.json
+        - name: Voting
+          file: ./abis/Voting.json
+        - name: InternalMarket
+          file: ./abis/InternalMarket.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
