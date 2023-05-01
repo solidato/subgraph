@@ -1,4 +1,4 @@
-import { Address } from "@graphprotocol/graph-ts";
+import { Address, log } from "@graphprotocol/graph-ts";
 import {
   GovernanceToken,
   Transfer,
@@ -22,6 +22,7 @@ const saveDaoUserData = (
   event: Transfer,
   userAddress: Address
 ): void => {
+  log.info("Save dao user data for address {}", [userAddress.toHexString()]);
   if (userAddress != Address.zero()) {
     const daoUser = getDaoUser(userAddress.toHexString());
     daoUser.address = userAddress;
@@ -33,6 +34,9 @@ const saveDaoUserData = (
       userAddress
     );
     daoUser.governanceWithdrawableTempBalance = governanceWithdrawableTempBalance;
+    log.info("governanceWithdrawableTempBalance {}", [
+      governanceWithdrawableTempBalance.toHexString(),
+    ]);
     daoUser.governanceOfferedTempBalance = governanceOfferedTempBalance;
     daoUser.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
       governanceOfferedTempBalance
@@ -46,9 +50,11 @@ const saveDaoUserData = (
       const offerId = daoUser.activeOffers[index];
       const offer = Offer.load(offerId);
       if (offer && offer.expirationTimestamp >= event.block.timestamp) {
+        log.info("offer non expired {}", [offerId]);
         newActiveOffers.push(offer.id);
       }
       if (offer && offer.expirationTimestamp < event.block.timestamp) {
+        log.info("offer expired {}", [offerId]);
         offer.expiredOnTransfer = true;
         offer.save();
       }
