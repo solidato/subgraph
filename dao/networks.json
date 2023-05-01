@@ -13,32 +13,32 @@
       "startBlock": 13879953
     },
     "Voting": {
-      "address": "0x6526d7E9ecf819ff10184CCfD320863Bee6d975F",
-      "startBlock": 13879956
+      "address": "0xB8742fe8434307221D4f5ed6bee20BFB11499035",
+      "startBlock": 13935879
     },
     "GovernanceToken": {
-      "address": "0xB0D4A412E253E1245847E910972d64B9006820bA",
-      "startBlock": 13879958
+      "address": "0x65C0F38C939ccfa858DdF75CACD21c380def4Df3",
+      "startBlock": 13935881
     },
     "NeokingdomToken": {
-      "address": "0x1F7111c43dec6e32Ef3B643C9e3d7bA823C92940",
-      "startBlock": 13879961
+      "address": "0xAB31f4ED9E3462B53e272E4Edb3Eafc37F867465",
+      "startBlock": 13935885
     },
     "RedemptionController": {
       "address": "0x48783Db55F298682d65c332eD0314cBfeba2608a",
       "startBlock": 13879962
     },
     "InternalMarket": {
-      "address": "0x3D76AaF1E34Fcb191018Cf8FC76Dcc2547c4A59d",
-      "startBlock": 13879965
+      "address": "0x54e7F54f55cD977B43BbBc68eE97Dd64d968fC9D",
+      "startBlock": 13935888
     },
     "ShareholderRegistry": {
-      "address": "0xd114ec88EDF928D703E0b379BF45c1B6e877C3cC",
-      "startBlock": 13879966
+      "address": "0x3B8591fc4B4a3aD4881A7AF1aF8FcAfea5294808",
+      "startBlock": 13935890
     },
     "ResolutionManager": {
-      "address": "0x39a5d460E799Ebb8F6613c836Db8bC28c6bF6827",
-      "startBlock": 13879968
+      "address": "0xdAcd968B975C90E3a4df210e8e9E206E1f8039f4",
+      "startBlock": 13935892
     }
   }
 }
