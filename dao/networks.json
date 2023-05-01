@@ -2,53 +2,43 @@
   "tevmos": {
     "DAORoles": {
       "address": "0x9b26e32A51BfD2CC7188cbc798b9f0df94076c4e",
-      "startBlock": 13936248,
-      "blockHash": "0x02e6c014880e9d7db2a99db826f6690184f5fad6bcee00ee0ce81291c84451ef"
+      "startBlock": 13936248
     },
     "TokenMock": {
       "address": "0x649849750b5F1cC118aa9b4b556162449Ff7C458",
-      "startBlock": 13936250,
-      "blockHash": "0xae9ce98d68b765528d1005d38439efa839904b692af386bde81263fca86138e0"
+      "startBlock": 13936250
     },
     "PriceOracle": {
       "address": "0x881Ed50f66752c567eB578e8Cd1aB7A51878f9bA",
-      "startBlock": 13936251,
-      "blockHash": "0xdc3b36a6310ab6118495ce95876ec3895c2696b6a80f1fd9a1b68f98b803b26f"
+      "startBlock": 13936251
     },
     "Voting": {
       "address": "0x6f2B00D80984945879fd981613ac980107C41b52",
-      "startBlock": 13936252,
-      "blockHash": "0xac97e5a53edef1939419413713fb263d6b3a6f9cf0e32bafc6d1fc4f9d64c25c"
+      "startBlock": 13936252
     },
     "GovernanceToken": {
       "address": "0x4A59920b0d755e67A3fbb9fa2347Fb9274213F6f",
-      "startBlock": 13936253,
-      "blockHash": "0x3696d9c8e61ed199bb8bfd0445f0d42b3f4f8cb3e0a8dcf6cc31ca72ae093c8a"
+      "startBlock": 13936253
     },
     "NeokingdomToken": {
       "address": "0x37cEDd38ee432AcBeb8232fA068272eF385C5499",
-      "startBlock": 13936256,
-      "blockHash": "0x96577e43d7c3946f474f2cf224f13ac0cdbf072f2fdbd10f77ec256c35916f8e"
+      "startBlock": 13936256
     },
     "RedemptionController": {
       "address": "0x8268a941307c1dAf1AC027Eb654bc77450f4de88",
-      "startBlock": 13936258,
-      "blockHash": "0xe1f82f38ece4989993e56fd549b6d06d52f2368f05169fdc2a51e556fa9d6939"
+      "startBlock": 13936258
     },
     "InternalMarket": {
       "address": "0xC2409dFf1Ba51Dd4707EdE00134b2FbF34a208B4",
-      "startBlock": 13936259,
-      "blockHash": "0x78582743ea73ab51b76f54066c3d80601878aef049be869050d0eb0d5ecb3761"
+      "startBlock": 13936259
     },
     "ShareholderRegistry": {
       "address": "0x10e7eAcDAE134F799B31E0d10EAeC0E79Ba0E832",
-      "startBlock": 13936262,
-      "blockHash": "0x348ecb6be329f34c8cbc4f64eb3085e87205f22b6cb4330aa20d40fe8c8bcf1c"
+      "startBlock": 13936262
     },
     "ResolutionManager": {
       "address": "0x6b5a6CEB18b84827EdFCF89EdeF88aA0B2C26f98",
-      "startBlock": 13936263,
-      "blockHash": "0x4619dab81b21fcac3cd6d5ff004abe79522bd2c79021bf83897809878fd512bb"
+      "startBlock": 13936263
     }
   }
 }
