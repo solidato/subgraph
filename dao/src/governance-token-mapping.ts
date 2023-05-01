@@ -50,11 +50,25 @@ const saveDaoUserData = (
       const offerId = daoUser.activeOffers[index];
       const offer = Offer.load(offerId);
       if (offer && offer.expirationTimestamp >= event.block.timestamp) {
-        log.info("offer non expired {}", [offerId]);
+        log.info(
+          "offer non expired {} offer expiration {} event block timestamp {}",
+          [
+            offerId,
+            offer.expirationTimestamp.toString(),
+            event.block.timestamp.toString(),
+          ]
+        );
         newActiveOffers.push(offer.id);
       }
       if (offer && offer.expirationTimestamp < event.block.timestamp) {
-        log.info("offer expired {}", [offerId]);
+        log.info(
+          "offer expired {} offer expiration {} event block timestamp {}",
+          [
+            offerId,
+            offer.expirationTimestamp.toString(),
+            event.block.timestamp.toString(),
+          ]
+        );
         offer.expiredOnTransfer = true;
         offer.save();
       }
