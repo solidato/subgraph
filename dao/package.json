@@ -5,10 +5,10 @@
     "check-env": "node -e 'console.log(process.env)'",
     "codegen": "graph codegen",
     "build": "pnpm generate:contracts-addresses && graph build",
-    "create-local": "pnpm generate:contracts-addresses && graph create --node http://localhost:8020/ NeokingdomDAO/dao",
+    "create-local": "graph create --node http://localhost:8020/ NeokingdomDAO/dao",
     "remove-local": "graph remove --node http://localhost:8020/ NeokingdomDAO/dao",
-    "deploy-production": "pnpm generate:contracts-addresses && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 NeokingdomDAO/dao --networkFile networks.json --network evmos",
-    "deploy-staging": "pnpm generate:contracts-addresses && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 NeokingdomDAO/dao --networkFile networks.json --network tevmos",
+    "deploy-production": "NETWORK=evmos pnpm generate:contracts-addresses && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 NeokingdomDAO/dao --network-file networks.json --network evmos",
+    "deploy-staging": "NETWORK=tevmos pnpm generate:contracts-addresses && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 NeokingdomDAO/dao --network-file networks.json --network tevmos",
     "generate:contracts-addresses": "node ./generate-contract-addresses.js"
   },
   "dependencies": {

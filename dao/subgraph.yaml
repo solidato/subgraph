@@ -53,9 +53,13 @@ dataSources:
       abis:
         - name: ShareholderRegistry
           file: ./abis/ShareholderRegistry.json
+        - name: Voting
+          file: ./abis/Voting.json
       eventHandlers:
         - event: StatusChanged(indexed address,bytes32,bytes32)
           handler: handleStatusChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
       file: ./src/shareholder-registry-mapping.ts
   - kind: ethereum
     name: Voting
@@ -75,6 +79,50 @@ dataSources:
           handler: handleDelegateChanged
       file: ./src/voting-mapping.ts
   - kind: ethereum
+    name: InternalMarket
+    source:
+      abi: InternalMarket
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: InternalMarket
+          file: ./abis/InternalMarket.json
+      eventHandlers:
+        - event: OfferCreated(uint128,address,uint256,uint256)
+          handler: handleOfferCreated
+        - event: OfferMatched(uint128,address,address,uint256)
+          handler: handleOfferMatched
+      file: ./src/internal-market-mapping.ts
+  - kind: ethereum
+    name: GovernanceToken
+    source:
+      abi: GovernanceToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: GovernanceToken
+          file: ./abis/GovernanceToken.json
+        - name: Voting
+          file: ./abis/Voting.json
+        - name: InternalMarket
+          file: ./abis/InternalMarket.json
+        - name: NeokingdomToken
+          file: ./abis/NeokingdomToken.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: VestingSet(address,uint256)
+          handler: handleVestingSet
+      file: ./src/governance-token-mapping.ts
+  - kind: ethereum
     name: NeokingdomToken
     source:
       abi: NeokingdomToken
@@ -87,13 +135,13 @@ dataSources:
       abis:
         - name: NeokingdomToken
           file: ./abis/NeokingdomToken.json
+        - name: GovernanceToken
+          file: ./abis/GovernanceToken.json
+        - name: Voting
+          file: ./abis/Voting.json
+        - name: InternalMarket
+          file: ./abis/InternalMarket.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-        - event: OfferCreated(uint128,address,uint256,uint256)
-          handler: handleOfferCreated
-        - event: OfferMatched(uint128,address,address,uint256)
-          handler: handleOfferMatched
-        - event: VestingSet(address,uint256)
-          handler: handleVestingSet
       file: ./src/neokingdom-token-mapping.ts

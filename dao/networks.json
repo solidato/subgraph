@@ -1,20 +1,78 @@
 {
   "evmos": {
-    "ResolutionManager": {
-      "address": "0x8ac36631c0C1B630FF50Bb653F5a2edc405873D0",
-      "startBlock": 9774000
-    },
-    "ShareholderRegistry": {
-      "address": "0xB795d74f9C395332D533cC6c1cb2A9437De1fee3",
-      "startBlock": 9774000
+    "DAORoles": {
+      "address": "0x6A176C92985430535E738A79749A4137BEC6C4Db",
+      "startBlock": 12935879
     },
     "Voting": {
-      "address": "0x312A36442A7199623C91D219Fe981f1899817305",
-      "startBlock": 9774000
+      "address": "0x5DC219C8CaeF7c9ECd0b97372e6Ef4fC5D827975",
+      "startBlock": 12935961
+    },
+    "GovernanceToken": {
+      "address": "0x05d1b2355721903152768F0ec1B105Be1c35BCb4",
+      "startBlock": 12935980
     },
     "NeokingdomToken": {
-      "address": "0xA31c18929590B87eC11D854d1424b059f1D94732",
-      "startBlock": 9774000
+      "address": "0x655ecB57432CC1370f65e5dc2309588b71b473A9",
+      "startBlock": 12936015
+    },
+    "RedemptionController": {
+      "address": "0x7045bfaB66B55074C56aBeE34308CDa0916e086C",
+      "startBlock": 12936748
+    },
+    "InternalMarket": {
+      "address": "0x7687155fB855e24d1416C288CbaC0AFC3B65353c",
+      "startBlock": 12936774
+    },
+    "ShareholderRegistry": {
+      "address": "0x4706eD7a10064801F260BBf94743f241FCEf815e",
+      "startBlock": 12936808
+    },
+    "ResolutionManager": {
+      "address": "0xE5714C29b7acE2C6a3A80BE511ED7e5b92594204",
+      "startBlock": 12936843
+    }
+  },
+  "tevmos": {
+    "DAORoles": {
+      "address": "0x77F545526550A2104F5aF699245f9207ce3eD707",
+      "startBlock": 13959319
+    },
+    "TokenMock": {
+      "address": "0x1B0E56b2720EABB10f85f5ACf5Bc5C679B62774A",
+      "startBlock": 13959321
+    },
+    "PriceOracle": {
+      "address": "0x11ea102438038c26495eb301e847a264F5b23A2F",
+      "startBlock": 13959323
+    },
+    "Voting": {
+      "address": "0x26D389658F207cEDa0E3b394ffA452F53d4d355d",
+      "startBlock": 13959325
+    },
+    "GovernanceToken": {
+      "address": "0x19aD2Be1e082b5217b588eF45C9B62BfC65B345e",
+      "startBlock": 13959327
+    },
+    "NeokingdomToken": {
+      "address": "0x924ddb44512E0420F0c03de5E364627f0F192C25",
+      "startBlock": 13959328
+    },
+    "RedemptionController": {
+      "address": "0x4DE6cb00Eb895257c770e3b9011Af5F3bc032262",
+      "startBlock": 13959329
+    },
+    "InternalMarket": {
+      "address": "0x92Dae17Bc66bEDfF6c574Ae499C910Fd2CcA3dd1",
+      "startBlock": 13959331
+    },
+    "ShareholderRegistry": {
+      "address": "0x0960ac44ebBB091EfDF302F43B3707255C494C9D",
+      "startBlock": 13959334
+    },
+    "ResolutionManager": {
+      "address": "0xd9956ef3B03E281bd4ccC11Ce3C0B1F8A8644346",
+      "startBlock": 13959336
     }
   }
 }

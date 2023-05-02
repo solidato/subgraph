@@ -18,26 +18,28 @@ type ResolutionType @entity {
 
 type Resolution @entity {
   id: ID!
-  snapshotId: BigInt!
+  snapshotId: BigInt
   ipfsDataURI: String!
-  title: String
-  content: String
+  title: String!
+  content: String!
   isNegative: Boolean!
-  yesVotesTotal: BigInt!
+  yesVotesTotal: BigInt
   resolutionType: ResolutionType!
   createTimestamp: BigInt!
-  updateTimestamp: BigInt!
-  approveTimestamp: BigInt!
-  rejectTimestamp: BigInt!
+  updateTimestamp: BigInt
+  approveTimestamp: BigInt
+  rejectTimestamp: BigInt
   createBy: Bytes!
   updateBy: Bytes
   approveBy: Bytes
   rejectBy: Bytes
-  voters: [ResolutionVoter!]!
-  hasQuorum: Boolean!
+  voters: [ResolutionVoter!]
+  hasQuorum: Boolean
   executionTo: [Bytes!]!
   executionData: [Bytes!]!
   executionTimestamp: BigInt
+  addressedContributor: Bytes
+  totalVotingPower: BigInt
 }
 
 type DelegationUser @entity {
@@ -52,14 +54,24 @@ type Offer @entity {
   amount: BigInt!
   expirationTimestamp: BigInt!
   createTimestamp: BigInt!
+
+  expiredOnTransfer: Boolean!
 }
 
 type DaoUser @entity {
   id: ID!
   address: Bytes!
-  totalBalance: BigInt!
-  vestingBalance: BigInt!
-  unlockedTempBalance: BigInt!
+
+  governanceBalance: BigInt!
+  governanceOfferedTempBalance: BigInt!
+  governanceVestingBalance: BigInt!
+  governanceVaultedBalance: BigInt!
+  governanceWithdrawableTempBalance: BigInt!
+  votingPower: BigInt!
+  shareholderRegistryBalance: BigInt!
+  neokigdomTokenBalance: BigInt!
+
+  activeOffers: [Offer!]!
 }
 
 type DaoManager @entity {
@@ -69,4 +81,6 @@ type DaoManager @entity {
   shareholdersAddresses: [Bytes!]!
   investorsAddresses: [Bytes!]!
   resolutionTypes: [ResolutionType!]!
+
+  totalVotingPower: BigInt!
 }

@@ -37,15 +37,18 @@ const setValuesFromResolutionContract = (
   blockChainResolution: ResolutionManager__resolutionsResult,
   executionDetails: ResolutionManager__getExecutionDetailsResult
 ): void => {
-  const ipfsDataURI = blockChainResolution.value0;
+  const ipfsDataURI = blockChainResolution.getDataURI();
   const resolutionTypeEntity = ResolutionType.load(
-    blockChainResolution.value1.toString()
+    blockChainResolution.getResolutionTypeId().toString()
   ) as ResolutionType;
 
   resolutionEntity.resolutionType = resolutionTypeEntity.id;
-  resolutionEntity.yesVotesTotal = blockChainResolution.value4;
-  resolutionEntity.isNegative = blockChainResolution.value5;
+  resolutionEntity.yesVotesTotal = blockChainResolution.getYesVotesTotal();
+  resolutionEntity.isNegative = blockChainResolution.getIsNegative();
   resolutionEntity.ipfsDataURI = ipfsDataURI;
+  resolutionEntity.addressedContributor = blockChainResolution.getAddressedContributor();
+  resolutionEntity.snapshotId = blockChainResolution.getSnapshotId();
+
   const executionTo: Bytes[] = [];
   for (let index = 0; index < executionDetails.value0.length; index++) {
     // this is needed as you can't assign an Address[] to a Bytes[] directly, you need to first create Bytes[]
@@ -91,10 +94,15 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
     const blockChainResolution = resolutionManager.resolutions(
       event.params.resolutionId
     );
-    resolutionEntity.approveTimestamp = blockChainResolution.value2;
+    resolutionEntity.approveTimestamp = blockChainResolution.getApproveTimestamp();
     resolutionEntity.approveBy = event.transaction.from;
-    resolutionEntity.snapshotId = blockChainResolution.value3;
+    resolutionEntity.snapshotId = blockChainResolution.getSnapshotId();
     resolutionEntity.hasQuorum = resolutionEntity.isNegative;
+    resolutionEntity.totalVotingPower = voting.getTotalVotingPowerAt(
+      resolutionEntity.snapshotId
+    );
+
+    // todo remember to pay attention whenever we will implement the distrust vote
 
     for (
       let index = 0;
@@ -110,7 +118,8 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
         const resolutionVoter = new ResolutionVoter(
           resolutionIdStringified + "-" + voterAddress.toHexString()
         );
-        resolutionVoter.votingPower = result.value.value2;
+
+        resolutionVoter.votingPower = result.value.getVotingPower();
         resolutionVoter.address = voterAddress;
         resolutionVoter.hasVoted = false;
         resolutionVoter.hasVotedYes = false;
@@ -266,7 +275,7 @@ export function handleResolutionVoted(event: ResolutionVoted): void {
         voterAddress
       );
       if (!resultForVoter.reverted && resolutionVoter) {
-        resolutionVoter.votingPower = resultForVoter.value.value2;
+        resolutionVoter.votingPower = resultForVoter.value.getVotingPower();
       }
 
       const resultForDelegated = resolutionManager.try_getVoterVote(
@@ -277,7 +286,7 @@ export function handleResolutionVoted(event: ResolutionVoted): void {
         resolutionIdStringified + "-" + delegatedAddress.toHexString()
       );
       if (!resultForDelegated.reverted && resolutionVoterDelegated) {
-        resolutionVoterDelegated.votingPower = resultForDelegated.value.value2;
+        resolutionVoterDelegated.votingPower = resultForDelegated.value.getVotingPower();
         resolutionVoterDelegated.save();
       }
     }
@@ -317,19 +326,21 @@ export function handleResolutionTypeCreated(
     );
 
     const resolutionManager = ResolutionManager.bind(event.address);
+
     const resolutionType = resolutionManager.resolutionTypes(
       event.params.typeIndex
     );
 
-    newResolutionTypeEntity.name = resolutionType.value0;
-    newResolutionTypeEntity.quorum = resolutionType.value1;
-    newResolutionTypeEntity.noticePeriod = resolutionType.value2;
-    newResolutionTypeEntity.votingPeriod = resolutionType.value3;
-    newResolutionTypeEntity.canBeNegative = resolutionType.value4;
+    newResolutionTypeEntity.name = resolutionType.getName();
+    newResolutionTypeEntity.quorum = resolutionType.getQuorum();
+    newResolutionTypeEntity.noticePeriod = resolutionType.getNoticePeriod();
+    newResolutionTypeEntity.votingPeriod = resolutionType.getVotingPeriod();
+    newResolutionTypeEntity.canBeNegative = resolutionType.getCanBeNegative();
 
     daoManagerEntity.resolutionTypes = daoManagerEntity.resolutionTypes.concat([
       newResolutionTypeEntity.id,
     ]);
+
     daoManagerEntity.save();
     newResolutionTypeEntity.save();
   }
