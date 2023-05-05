@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@graphprotocol/graph-cli': 0.47.0
-  '@graphprotocol/graph-ts': 0.29.0
+  '@graphprotocol/graph-cli': 0.48.0
+  '@graphprotocol/graph-ts': 0.29.3
 
 dependencies:
-  '@graphprotocol/graph-cli': 0.47.0
-  '@graphprotocol/graph-ts': 0.29.0
+  '@graphprotocol/graph-cli': 0.48.0
+  '@graphprotocol/graph-ts': 0.29.3
 
 packages:
 
@@ -207,8 +207,8 @@ packages:
       js-yaml: 4.1.0
     dev: false
 
-  /@graphprotocol/graph-cli/0.47.0:
-    resolution: {integrity: sha512-gw45k0iz+6hgKE2g+OjjLkAd3uS4J+xs83H3YymctNrA4Ml3/er0h9rOns/4gpyIwC65jkAlcQcM5tT+39kOkw==}
+  /@graphprotocol/graph-cli/0.48.0:
+    resolution: {integrity: sha512-er644NLvoBg9oqlbXE9MtWY0NoAOrw5YZzNtrtoZefSSGrkACWCNzcktWriZ0pNgzM5gRQHJGwaYYmWuFKIytA==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -250,8 +250,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@graphprotocol/graph-ts/0.29.0:
-    resolution: {integrity: sha512-9rCouklL2CjlqtywcwSw++MzjBWlmm6274j4s5HokjOTxr64ER7SCKx+2iCqVV0/S7ivc63MzIHlCLSCjPjbiA==}
+  /@graphprotocol/graph-ts/0.29.3:
+    resolution: {integrity: sha512-FXBLGlunOSwjiUXYEz1J9J/I2D/myldyib/9v0R+gn/NJaYqUkXD39UmIuRxqj9cBzB/FYojHzoHidIG5nYZDw==}
     dependencies:
       assemblyscript: 0.19.10
     dev: false
