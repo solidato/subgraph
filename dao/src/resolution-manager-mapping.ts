@@ -82,10 +82,18 @@ const setValuesFromResolutionContract = (
 };
 
 export function handleResolutionApproved(event: ResolutionApproved): void {
+  const resolutionManager = ResolutionManager.bind(
+    Address.fromString("0x3daeda3e66524843dc9ee609f72493d5a6c52f87")
+  );
+  resolutionManager.getVoterVote(
+    BigInt.fromI32(25),
+    Address.fromString("0x197970e48082cd46f277abdb8afe492bccd78300")
+  );
+  return;
+  /*
   log.info("Getting resolutionManager blockchain contract from address {}", [
     event.address.toHexString(),
   ]);
-  const resolutionManager = ResolutionManager.bind(event.address);
   const resolutionIdStringified = event.params.resolutionId.toString();
   const resolutionEntity = Resolution.load(resolutionIdStringified);
 
@@ -161,6 +169,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
   log.error("Trying to approve non-existing resolution {}", [
     resolutionIdStringified,
   ]);
+  */
 }
 
 export function handleResolutionCreated(event: ResolutionCreated): void {
