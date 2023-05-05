@@ -119,7 +119,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
       ]);
       const voterVote = resolutionManager.getVoterVote(
         event.params.resolutionId,
-        voterAddress
+        Address.fromString(voterAddress.toHex())
       );
       const resolutionVoter = new ResolutionVoter(
         resolutionIdStringified + "-" + voterAddress.toHexString()
