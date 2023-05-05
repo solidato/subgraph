@@ -151,6 +151,27 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
       possibleVotersIds.push(resolutionVoter.id);
     }
 
+    // we also need to add the other shareholders and investors to the resolution voters
+    // so they will be displayed in the resolution page and pdf
+    const otherResolutionShareholders = daoManagerEntity.shareholdersAddresses.concat(
+      daoManagerEntity.investorsAddresses
+    );
+
+    for (let index = 0; index < otherResolutionShareholders.length; index++) {
+      const shareholderAddress = otherResolutionShareholders[index];
+      const resolutionVoter = new ResolutionVoter(
+        resolutionIdStringified + "-" + shareholderAddress.toHexString()
+      );
+
+      resolutionVoter.votingPower = BigInt.fromI32(0);
+      resolutionVoter.address = shareholderAddress;
+      resolutionVoter.hasVoted = false;
+      resolutionVoter.hasVotedYes = false;
+      resolutionVoter.delegated = shareholderAddress;
+      resolutionVoter.save();
+      possibleVotersIds.push(resolutionVoter.id);
+    }
+
     if (possibleVotersIds.length > 0) {
       resolutionEntity.voters = possibleVotersIds;
     }
