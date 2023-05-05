@@ -124,7 +124,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
       );
 
       resolutionVoter.votingPower = voting.getVotingPowerAt(
-        voterAddress,
+        Address.fromString(voterAddress.toHex()),
         resolutionEntity.snapshotId
       );
       resolutionVoter.address = voterAddress;
