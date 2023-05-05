@@ -110,43 +110,37 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
       index++
     ) {
       const voterAddress = daoManagerEntity.contributorsAddresses[index];
-      const result = resolutionManager.try_getVoterVote(
+      const voterVote = resolutionManager.getVoterVote(
         event.params.resolutionId,
         Address.fromString(voterAddress.toHex())
       );
-      if (!result.reverted) {
-        const resolutionVoter = new ResolutionVoter(
-          resolutionIdStringified + "-" + voterAddress.toHexString()
-        );
+      const resolutionVoter = new ResolutionVoter(
+        resolutionIdStringified + "-" + voterAddress.toHexString()
+      );
 
-        resolutionVoter.votingPower = result.value.getVotingPower();
-        resolutionVoter.address = voterAddress;
-        resolutionVoter.hasVoted = false;
-        resolutionVoter.hasVotedYes = false;
-        const maybeDelegated = voting.try_getDelegateAt(
-          Address.fromString(voterAddress.toHex()),
-          resolutionEntity.snapshotId
-        );
-        log.info("Try get delegated at with address {} and snapshotId {}", [
-          voterAddress.toHexString(),
-          resolutionEntity.snapshotId.toHexString(),
-        ]);
-        if (!maybeDelegated.reverted) {
-          const delegatedAddress = maybeDelegated.value;
-          resolutionVoter.delegated = delegatedAddress;
-        } else {
-          log.warning("Tried getVoterVote for address {} but failed", [
-            voterAddress.toHexString(),
-          ]);
-          resolutionVoter.delegated = voterAddress;
-        }
-        resolutionVoter.save();
-        possibleVotersIds.push(resolutionVoter.id);
+      resolutionVoter.votingPower = voterVote.getVotingPower();
+      resolutionVoter.address = voterAddress;
+      resolutionVoter.hasVoted = false;
+      resolutionVoter.hasVotedYes = false;
+      const maybeDelegated = voting.try_getDelegateAt(
+        Address.fromString(voterAddress.toHex()),
+        resolutionEntity.snapshotId
+      );
+      log.info("Try get delegated at with address {} and snapshotId {}", [
+        voterAddress.toHexString(),
+        resolutionEntity.snapshotId.toHexString(),
+      ]);
+      if (!maybeDelegated.reverted) {
+        const delegatedAddress = maybeDelegated.value;
+        resolutionVoter.delegated = delegatedAddress;
       } else {
         log.warning("Tried getVoterVote for address {} but failed", [
           voterAddress.toHexString(),
         ]);
+        resolutionVoter.delegated = voterAddress;
       }
+      resolutionVoter.save();
+      possibleVotersIds.push(resolutionVoter.id);
     }
 
     if (possibleVotersIds.length > 0) {
