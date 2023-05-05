@@ -97,6 +97,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
     const blockChainResolution = resolutionManager.resolutions(
       event.params.resolutionId
     );
+
     resolutionEntity.approveTimestamp = blockChainResolution.getApproveTimestamp();
     resolutionEntity.approveBy = event.transaction.from;
     resolutionEntity.snapshotId = blockChainResolution.getSnapshotId();
@@ -117,15 +118,15 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
         event.params.resolutionId.toString(),
         voterAddress.toHexString(),
       ]);
-      const voterVote = resolutionManager.getVoterVote(
-        event.params.resolutionId,
-        Address.fromString(voterAddress.toHex())
-      );
+
       const resolutionVoter = new ResolutionVoter(
         resolutionIdStringified + "-" + voterAddress.toHexString()
       );
 
-      resolutionVoter.votingPower = voterVote.getVotingPower();
+      resolutionVoter.votingPower = voting.getVotingPowerAt(
+        voterAddress,
+        resolutionEntity.snapshotId
+      );
       resolutionVoter.address = voterAddress;
       resolutionVoter.hasVoted = false;
       resolutionVoter.hasVotedYes = false;
