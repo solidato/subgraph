@@ -83,7 +83,7 @@ const setValuesFromResolutionContract = (
 
 export function handleResolutionApproved(event: ResolutionApproved): void {
   log.info("Getting resolutionManager blockchain contract from address {}", [
-    event.address.toString(),
+    event.address.toHexString(),
   ]);
   const resolutionManager = ResolutionManager.bind(event.address);
   const resolutionIdStringified = event.params.resolutionId.toString();
@@ -115,7 +115,7 @@ export function handleResolutionApproved(event: ResolutionApproved): void {
       const voterAddress = daoManagerEntity.contributorsAddresses[index];
       log.info("Calling get voter vote for resolution {} and voter {}", [
         event.params.resolutionId.toString(),
-        voterAddress.toString(),
+        voterAddress.toHexString(),
       ]);
       const voterVote = resolutionManager.getVoterVote(
         event.params.resolutionId,
