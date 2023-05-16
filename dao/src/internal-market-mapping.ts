@@ -1,4 +1,4 @@
-import { log } from "@graphprotocol/graph-ts";
+import { Address, log } from "@graphprotocol/graph-ts";
 import { Offer } from "../generated/schema";
 import {
   OfferCreated,
@@ -43,5 +43,5 @@ export function handleOfferMatched(event: OfferMatched): void {
   offerEntity.save();
 
   // save dao user to refresh all the balances
-  saveDaoUserData(offerEntity.from, event.block.timestamp);
+  saveDaoUserData(Address.fromBytes(offerEntity.from), event.block.timestamp);
 }
