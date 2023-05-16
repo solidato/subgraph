@@ -100,8 +100,14 @@ dataSources:
       entities:
         - Transfer
       abis:
+        - name: GovernanceToken
+          file: ./abis/GovernanceToken.json
+        - name: Voting
+          file: ./abis/Voting.json
         - name: InternalMarket
           file: ./abis/InternalMarket.json
+        - name: NeokingdomToken
+          file: ./abis/NeokingdomToken.json
       eventHandlers:
         - event: OfferCreated(uint128,address,uint256,uint256)
           handler: handleOfferCreated
