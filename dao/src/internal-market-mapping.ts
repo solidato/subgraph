@@ -5,6 +5,7 @@ import {
   OfferMatched,
 } from "../generated/InternalMarket/InternalMarket";
 import { getDaoUser } from "./dao-user";
+import saveDaoUserData from "./save-dao-user-data";
 
 export function handleOfferCreated(event: OfferCreated): void {
   const fromHexString = event.params.from.toHexString();
@@ -40,4 +41,7 @@ export function handleOfferMatched(event: OfferMatched): void {
 
   offerEntity.amount = offerEntity.amount.minus(event.params.amount);
   offerEntity.save();
+
+  // save dao user to refresh all the balances
+  saveDaoUserData(offerEntity.from, event.block.timestamp);
 }
