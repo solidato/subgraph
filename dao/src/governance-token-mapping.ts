@@ -21,9 +21,9 @@ export function handleTransfer(event: Transfer): void {
     value.toString(),
   ]);
 
-  saveDaoUserData(addressFrom, event.block.timestamp);
+  saveDaoUserData(addressFrom, event.block);
 
-  saveDaoUserData(addressTo, event.block.timestamp);
+  saveDaoUserData(addressTo, event.block);
 
   const votingContract = Voting.bind(
     Address.fromString(VOTING_CONTRACT_ADDRESS)

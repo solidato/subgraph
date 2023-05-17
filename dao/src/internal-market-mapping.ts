@@ -41,7 +41,6 @@ export function handleOfferMatched(event: OfferMatched): void {
 
   offerEntity.amount = offerEntity.amount.minus(event.params.amount);
   offerEntity.save();
-
   // save dao user to refresh all the balances
-  saveDaoUserData(Address.fromBytes(offerEntity.from), event.block.timestamp);
+  saveDaoUserData(Address.fromBytes(offerEntity.from), event.block);
 }

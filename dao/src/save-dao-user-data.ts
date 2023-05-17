@@ -1,4 +1,4 @@
-import { Address, BigInt, log } from "@graphprotocol/graph-ts";
+import { Address, BigInt, ethereum, log } from "@graphprotocol/graph-ts";
 import { GovernanceToken } from "../generated/GovernanceToken/GovernanceToken";
 import { InternalMarket } from "../generated/InternalMarket/InternalMarket";
 import { Voting } from "../generated/Voting/Voting";
@@ -11,10 +11,20 @@ import {
   VOTING_CONTRACT_ADDRESS,
 } from "../generated/addresses";
 
-const saveDaoUserData = (
-  userAddress: Address,
-  blockTimestamp: BigInt
-): void => {
+const BLOCK_NUMBER_TO_SKIP = BigInt.fromI32(13343844);
+
+const saveDaoUserData = (userAddress: Address, block: ethereum.Block): void => {
+  const blockTimestamp = block.timestamp;
+  const blockNumber = block.number;
+
+  // We're skipping block 13343844 because the withdrawableBalanceOf function returns
+  // an error, so we need to wait for the expiration of the offer.
+  // See https://github.com/NeokingdomDAO/contracts/issues/67 for more info
+  if (blockNumber === BLOCK_NUMBER_TO_SKIP) {
+    log.info("Skipping because blockNumber is {}", [blockNumber.toHexString()]);
+    return;
+  }
+
   const votingContract = Voting.bind(
     Address.fromString(VOTING_CONTRACT_ADDRESS)
   );
