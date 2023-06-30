@@ -84,3 +84,9 @@ type DaoManager @entity {
 
   totalVotingPower: BigInt!
 }
+
+type TokenMinting @entity {
+  id: ID! # blockNumber
+  amount: [BigInt!]!
+  mintedTimestamp: BigInt!
+}
