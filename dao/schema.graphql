@@ -87,6 +87,6 @@ type DaoManager @entity {
 
 type TokenMinting @entity {
   id: ID! # blockNumber
-  amount: [BigInt!]!
+  amounts: [BigInt!]!
   mintedTimestamp: BigInt!
 }

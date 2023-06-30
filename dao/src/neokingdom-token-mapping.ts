@@ -1,7 +1,20 @@
-import { Address, log } from "@graphprotocol/graph-ts";
+import { Address, BigInt, log } from "@graphprotocol/graph-ts";
 import { Transfer } from "../generated/NeokingdomToken/NeokingdomToken";
 import saveDaoUserData from "./save-dao-user-data";
 import { TokenMinting } from "../generated/schema";
+
+export function getTokenMinting(id: string): TokenMinting {
+  const loadedTokenMinting = TokenMinting.load(id);
+  if (loadedTokenMinting) {
+    return loadedTokenMinting;
+  }
+
+  const newTokenMinting = new TokenMinting(id);
+  newTokenMinting.amounts = [];
+  newTokenMinting.mintedTimestamp = BigInt.fromI32(0);
+
+  return newTokenMinting;
+}
 
 export function handleTransfer(event: Transfer): void {
   const addressTo = event.params.to;
@@ -13,20 +26,9 @@ export function handleTransfer(event: Transfer): void {
   if (event.params.from == Address.zero()) {
     const blockHash = event.block.hash.toHexString();
 
-    // we should also create a new TokenMinting entity with:
-    const tokenMinting =
-      TokenMinting.load(blockHash) || new TokenMinting(blockHash);
+    const tokenMinting = getTokenMinting(blockHash);
 
-    if (!tokenMinting) {
-      log.critical("TokenMinting entity {} is null", [blockHash]);
-      return;
-    }
-
-    if (!tokenMinting.amount) {
-      tokenMinting.amount = [];
-    }
-
-    tokenMinting.amount = tokenMinting.amount.concat([event.params.value]);
+    tokenMinting.amounts = tokenMinting.amounts.concat([event.params.value]);
     tokenMinting.mintedTimestamp = event.block.timestamp;
 
     tokenMinting.save();

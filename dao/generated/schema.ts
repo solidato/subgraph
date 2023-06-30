@@ -1057,8 +1057,8 @@ export class TokenMinting extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get amount(): Array<BigInt> {
-    let value = this.get("amount");
+  get amounts(): Array<BigInt> {
+    let value = this.get("amounts");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -1066,8 +1066,8 @@ export class TokenMinting extends Entity {
     }
   }
 
-  set amount(value: Array<BigInt>) {
-    this.set("amount", Value.fromBigIntArray(value));
+  set amounts(value: Array<BigInt>) {
+    this.set("amounts", Value.fromBigIntArray(value));
   }
 
   get mintedTimestamp(): BigInt {
