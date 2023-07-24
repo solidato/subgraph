@@ -35,44 +35,48 @@
   },
   "tevmos": {
     "DAORoles": {
-      "address": "0x5c6cAb1F0BB673D9Ef5caD2AA09d7eE488653fe0",
-      "startBlock": 14276834
+      "address": "0x27FAE0771CB1be74904647F0f863D6F14328F8a1",
+      "startBlock": 14787827
     },
     "TokenMock": {
-      "address": "0x44701b965059606835bCBEda84AB2464e2B89c38",
-      "startBlock": 14276847
+      "address": "0x0Ac6B9A97331CB4Fe83C97980e81c8C8b28381Bc",
+      "startBlock": 14787830
     },
     "PriceOracle": {
-      "address": "0x50Bb1eA317EfF2E9EB647768AcA6e47CF1a66b0B",
-      "startBlock": 14276854
+      "address": "0xccd8a4F1Ff3cbaB670349adE2C5320780bBff178",
+      "startBlock": 14787833
     },
     "Voting": {
-      "address": "0xA40752Ac90Df838Affbe34bb2aa89675B0e354A6",
-      "startBlock": 14276866
+      "address": "0x64cc16a37b83adAC5c0c663807920A9B82E3C143",
+      "startBlock": 14787835
     },
     "GovernanceToken": {
-      "address": "0x7455A9F3BfA49F4AfDaa99B149E3e9c21D46bA52",
-      "startBlock": 14276886
+      "address": "0x1401859D3787b3283f995922a80574F61a7d1287",
+      "startBlock": 14787837
     },
     "NeokingdomToken": {
-      "address": "0xD8e7D136371aF5F8cD6eDDb4e627558A64B85c3d",
-      "startBlock": 14276902
+      "address": "0x9c75Bf0571854b69fFa1a27ce7f6d895b7cA167a",
+      "startBlock": 14787838
     },
     "RedemptionController": {
-      "address": "0x97C561e4Fe1992FC9B9A115898dbDD51bEc9b02F",
-      "startBlock": 14276911
+      "address": "0x4AB233B5dD59F6f1932ED8e3b5c104F0Ad5BCb8d",
+      "startBlock": 14787840
     },
     "InternalMarket": {
-      "address": "0x4D99788C96442B4880b2a77d920F45ecC89CF38C",
-      "startBlock": 14276928
+      "address": "0x9C4Ae47e8d46a632C99AcB58A2f8701aC3436afb",
+      "startBlock": 14787843
     },
     "ShareholderRegistry": {
-      "address": "0xE51E4F34f4332536fbc244eaBC12Dd2f68179842",
-      "startBlock": 14276949
+      "address": "0xdC21500Fb088E9BDbeC7024ce5EB55bE25D56CF6",
+      "startBlock": 14787846
     },
     "ResolutionManager": {
-      "address": "0xCD0BCe16b9E7F1e7900c75b790B44d485cb1d7E7",
-      "startBlock": 14276964
+      "address": "0xF686a67148d59237E3D578d088616634fA8c5473",
+      "startBlock": 14787848
+    },
+    "ProxyAdmin": {
+      "address": "0x2E0d7579070C953672aEA8f10Fa3A96521230EaD",
+      "startBlock": 14787850
     }
   }
 }
