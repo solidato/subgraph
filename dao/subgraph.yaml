@@ -169,3 +169,26 @@ dataSources:
           handler: handleTransfer
       file: ./src/neokingdom-token-mapping.ts
     network: evmos
+  # - kind: ethereum
+  #   name: RedemptionController
+  #   source:
+  #     abi: RedemptionController
+  #     address: "0x7045bfaB66B55074C56aBeE34308CDa0916e086C"
+  #     startBlock: 12936748
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.6
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Redemption
+  #       - RedemptionHistoryItem
+  #     abis:
+  #       - name: RedemptionController
+  #         file: ./abis/RedemptionController.json
+  #     eventHandlers:
+  #       - event: RedemptionCreated(indexed address,indexed address,uint256)
+  #         handler: handleRedemptionCreated
+  #       - event: RedemptionUpdated(indexed address,indexed address,uint256)
+  #         handler: handleRedemptionUpdated
+  #     file: ./src/redemption-controller-mapping.ts
+  #   network: evmos

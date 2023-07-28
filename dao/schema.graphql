@@ -85,6 +85,22 @@ type DaoManager @entity {
   totalVotingPower: BigInt!
 }
 
+type RedemptionHistory @entity {
+  id: ID!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type Redemption @entity {
+  id: ID!
+  amount: BigInt!
+  redemptionHistory: [RedemptionHistory!]!
+  createTimestamp: BigInt!
+  createBy: Bytes!
+  startTimestamp: BigInt!
+  endTimestamp: BigInt!
+}
+
 type TokenMinting @entity {
   id: ID! # blockNumber
   amounts: [BigInt!]!
