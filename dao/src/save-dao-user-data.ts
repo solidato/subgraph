@@ -11,7 +11,7 @@ import {
   VOTING_CONTRACT_ADDRESS,
 } from "../generated/addresses";
 
-const BLOCK_NUMBERS_TO_SKIP = [BigInt.fromI32(13343844), BigInt.fromI32(13310527)];
+const BLOCK_NUMBERS_TO_SKIP_BEFORE = BigInt.fromI32(13343844);
 
 const saveDaoUserData = (userAddress: Address, block: ethereum.Block): void => {
   const blockTimestamp = block.timestamp;
@@ -20,7 +20,7 @@ const saveDaoUserData = (userAddress: Address, block: ethereum.Block): void => {
   // We're skipping block 13343844 or 13310527 because the withdrawableBalanceOf function returns
   // an error, so we need to wait for the expiration of the offer.
   // See https://github.com/NeokingdomDAO/contracts/issues/67 for more info
-  if (BLOCK_NUMBERS_TO_SKIP.includes(blockNumber)) {
+  if (blockNumber <= BLOCK_NUMBERS_TO_SKIP_BEFORE) {
     log.info("Skipping because blockNumber is {}", [blockNumber.toHexString()]);
     return;
   }
