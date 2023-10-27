@@ -29,6 +29,12 @@ export class ResolutionVoter extends Entity {
     }
   }
 
+  static loadInBlock(id: string): ResolutionVoter | null {
+    return changetype<ResolutionVoter | null>(
+      store.get_in_block("ResolutionVoter", id)
+    );
+  }
+
   static load(id: string): ResolutionVoter | null {
     return changetype<ResolutionVoter | null>(store.get("ResolutionVoter", id));
   }
@@ -130,6 +136,12 @@ export class ResolutionType extends Entity {
     }
   }
 
+  static loadInBlock(id: string): ResolutionType | null {
+    return changetype<ResolutionType | null>(
+      store.get_in_block("ResolutionType", id)
+    );
+  }
+
   static load(id: string): ResolutionType | null {
     return changetype<ResolutionType | null>(store.get("ResolutionType", id));
   }
@@ -229,6 +241,10 @@ export class Resolution extends Entity {
       );
       store.set("Resolution", id.toString(), this);
     }
+  }
+
+  static loadInBlock(id: string): Resolution | null {
+    return changetype<Resolution | null>(store.get_in_block("Resolution", id));
   }
 
   static load(id: string): Resolution | null {
@@ -597,6 +613,12 @@ export class DelegationUser extends Entity {
     }
   }
 
+  static loadInBlock(id: string): DelegationUser | null {
+    return changetype<DelegationUser | null>(
+      store.get_in_block("DelegationUser", id)
+    );
+  }
+
   static load(id: string): DelegationUser | null {
     return changetype<DelegationUser | null>(store.get("DelegationUser", id));
   }
@@ -657,6 +679,10 @@ export class Offer extends Entity {
       );
       store.set("Offer", id.toString(), this);
     }
+  }
+
+  static loadInBlock(id: string): Offer | null {
+    return changetype<Offer | null>(store.get_in_block("Offer", id));
   }
 
   static load(id: string): Offer | null {
@@ -758,6 +784,10 @@ export class DaoUser extends Entity {
       );
       store.set("DaoUser", id.toString(), this);
     }
+  }
+
+  static loadInBlock(id: string): DaoUser | null {
+    return changetype<DaoUser | null>(store.get_in_block("DaoUser", id));
   }
 
   static load(id: string): DaoUser | null {
@@ -926,6 +956,10 @@ export class DaoManager extends Entity {
     }
   }
 
+  static loadInBlock(id: string): DaoManager | null {
+    return changetype<DaoManager | null>(store.get_in_block("DaoManager", id));
+  }
+
   static load(id: string): DaoManager | null {
     return changetype<DaoManager | null>(store.get("DaoManager", id));
   }
@@ -1040,6 +1074,12 @@ export class RedemptionHistory extends Entity {
     }
   }
 
+  static loadInBlock(id: string): RedemptionHistory | null {
+    return changetype<RedemptionHistory | null>(
+      store.get_in_block("RedemptionHistory", id)
+    );
+  }
+
   static load(id: string): RedemptionHistory | null {
     return changetype<RedemptionHistory | null>(
       store.get("RedemptionHistory", id)
@@ -1102,6 +1142,10 @@ export class Redemption extends Entity {
       );
       store.set("Redemption", id.toString(), this);
     }
+  }
+
+  static loadInBlock(id: string): Redemption | null {
+    return changetype<Redemption | null>(store.get_in_block("Redemption", id));
   }
 
   static load(id: string): Redemption | null {
@@ -1216,6 +1260,12 @@ export class TokenMinting extends Entity {
       );
       store.set("TokenMinting", id.toString(), this);
     }
+  }
+
+  static loadInBlock(id: string): TokenMinting | null {
+    return changetype<TokenMinting | null>(
+      store.get_in_block("TokenMinting", id)
+    );
   }
 
   static load(id: string): TokenMinting | null {

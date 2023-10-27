@@ -1,10 +1,9 @@
 import { Redemption, RedemptionHistory } from "../generated/schema";
+import { RedemptionCreated, RedemptionUpdated } from "../generated/RedemptionController/RedemptionController";
 
-// see https://excalidraw.com/#room=086049ebc8e9dc8d6ba3,TNTY6gcjMRZP1XacEpfUgg
-
-export function handleRedemptionCreated(event) {
+export function handleRedemptionCreated(event: RedemptionCreated): void {
   const index = event.params.index.toString();
-  const from = event.params.from;
+  const from = event.params.account;
   const redemption = new Redemption(index + "-" + from.toHexString());
 
   redemption.createBy = from;
@@ -16,7 +15,7 @@ export function handleRedemptionCreated(event) {
   redemption.save();
 }
 
-export function handleRedemptionUpdated(event) {
+export function handleRedemptionUpdated(event: RedemptionUpdated): void {
   const index = event.params.index.toString();
   const from = event.params.from;
   const redemptionId = index + "-" + from.toHexString();
