@@ -11,6 +11,7 @@ import {
   Resolution,
   ResolutionVoter,
   ResolutionType,
+  ResolutionMetadata,
 } from "../generated/schema";
 import {
   ResolutionManager__resolutionsResult,
@@ -72,11 +73,23 @@ const setValuesFromResolutionContract = (
   const ipfsData = json.fromBytes(ipfsRawData as Bytes).toObject();
   const title = ipfsData.get("title");
   const content = ipfsData.get("content");
+  const metadata = ipfsData.get("metadata");
   if (title) {
     resolutionEntity.title = title.toString();
   }
   if (content) {
     resolutionEntity.content = content.toString();
+  }
+  if (metadata) {
+    const metadataObject = metadata.toObject()
+    const isMonthlyRewards = metadataObject.get("isMonthlyRewards");
+    const month = metadataObject.get("month");
+    const resolutionMetadata = new ResolutionMetadata(resolutionEntity.id);
+    resolutionMetadata.month = month ? month.toString() : "";
+    resolutionMetadata.isMonthlyRewards = isMonthlyRewards ? isMonthlyRewards.toBool() : false;
+    resolutionMetadata.save();
+
+    resolutionEntity.metadata = resolutionMetadata.id;
   }
   resolutionEntity.save();
 };

@@ -80,6 +80,12 @@ dataSources:
       abis:
         - name: Voting
           file: ./abis/Voting.json
+        - name: GovernanceToken
+          file: ./abis/GovernanceToken.json
+        - name: InternalMarket
+          file: ./abis/InternalMarket.json
+        - name: NeokingdomToken
+          file: ./abis/NeokingdomToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,address,address)
           handler: handleDelegateChanged
