@@ -45,10 +45,14 @@ const saveDaoUserData = (userAddress: Address, block: ethereum.Block): void => {
   if (userAddress != Address.zero()) {
     const daoUser = getDaoUser(userAddress.toHexString());
     daoUser.address = userAddress;
-    daoUser.neokigdomTokenBalance = neokingdomTokenContract.balanceOf(
-      userAddress
-    );
-    daoUser.votingPower = votingContract.getVotingPower(userAddress);
+    const maybeBalanceOf = neokingdomTokenContract.try_balanceOf(userAddress);
+    if (!maybeBalanceOf.reverted) {
+      daoUser.neokigdomTokenBalance = maybeBalanceOf.value;
+    }
+    const maybeVotingPower = votingContract.try_getVotingPower(userAddress);
+    if (!maybeVotingPower.reverted) {
+      daoUser.votingPower = maybeVotingPower.value;
+    }
     const governanceWithdrawableTempBalance = internalMarketContract.withdrawableBalanceOf(
       userAddress
     );
@@ -63,7 +67,10 @@ const saveDaoUserData = (userAddress: Address, block: ethereum.Block): void => {
     daoUser.governanceVaultedBalance = governanceWithdrawableTempBalance.plus(
       governanceOfferedTempBalance
     );
-    daoUser.governanceBalance = governanceTokenContract.balanceOf(userAddress);
+    const maybeGovernanceBalanceOf = governanceTokenContract.try_balanceOf(userAddress);
+    if (!maybeGovernanceBalanceOf.reverted) {
+      daoUser.governanceBalance = maybeGovernanceBalanceOf.value;
+    }
     daoUser.governanceVestingBalance = governanceTokenContract.vestingBalanceOf(
       userAddress
     );

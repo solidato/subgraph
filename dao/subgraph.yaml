@@ -1,4 +1,4 @@
-specVersion: 0.0.4
+specVersion: 0.0.5
 schema:
   file: ./schema.graphql
 features:
@@ -8,11 +8,9 @@ dataSources:
     name: ResolutionManager
     source:
       abi: ResolutionManager
-      address: "0xE5714C29b7acE2C6a3A80BE511ED7e5b92594204"
-      startBlock: 12936843
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - DelegateLostVotingPower
@@ -47,11 +45,9 @@ dataSources:
     name: ShareholderRegistry
     source:
       abi: ShareholderRegistry
-      address: "0x4706eD7a10064801F260BBf94743f241FCEf815e"
-      startBlock: 12936808
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - StatusChanged
@@ -71,11 +67,9 @@ dataSources:
     name: Voting
     source:
       abi: Voting
-      address: "0x5DC219C8CaeF7c9ECd0b97372e6Ef4fC5D827975"
-      startBlock: 12935961
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - DelegateChanged
@@ -97,11 +91,9 @@ dataSources:
     name: InternalMarket
     source:
       abi: InternalMarket
-      address: "0x7687155fB855e24d1416C288CbaC0AFC3B65353c"
-      startBlock: 12936774
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - Transfer
@@ -125,11 +117,9 @@ dataSources:
     name: GovernanceToken
     source:
       abi: GovernanceToken
-      address: "0x05d1b2355721903152768F0ec1B105Be1c35BCb4"
-      startBlock: 12935980
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - Transfer
@@ -153,11 +143,9 @@ dataSources:
     name: NeokingdomToken
     source:
       abi: NeokingdomToken
-      address: "0x655ecB57432CC1370f65e5dc2309588b71b473A9"
-      startBlock: 12936015
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - Transfer
@@ -174,4 +162,25 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/neokingdom-token-mapping.ts
+    network: evmos
+  - kind: ethereum
+    name: RedemptionController
+    source:
+      abi: RedemptionController
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Redemption
+        - RedemptionHistoryItem
+      abis:
+        - name: RedemptionController
+          file: ./abis/RedemptionController.json
+      eventHandlers:
+        - event: RedemptionCreated(address,uint256,uint256,uint256,uint256)
+          handler: handleRedemptionCreated
+        - event: RedemptionUpdated(address,uint256,uint256,uint256)
+          handler: handleRedemptionUpdated
+      file: ./src/redemption-controller-mapping.ts
     network: evmos

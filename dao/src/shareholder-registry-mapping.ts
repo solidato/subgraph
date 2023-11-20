@@ -162,23 +162,34 @@ export function handleTransfer(event: Transfer): void {
 
   if (addressFrom != Address.zero()) {
     const daoUserFrom = getDaoUser(addressFromHex);
-    daoUserFrom.votingPower = votingContract.getVotingPower(addressFrom);
-    daoUserFrom.shareholderRegistryBalance = shareholderRegistryContract.balanceOf(
-      addressFrom
-    );
-    daoUserFrom.save();
+    const maybeVotingPower = votingContract.try_getVotingPower(addressFrom);
+    if (!maybeVotingPower.reverted) {
+      daoUserFrom.votingPower = maybeVotingPower.value;
+      const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(addressFrom)
+      if (!maybeShareholderRegistryBalance.reverted)  {
+        daoUserFrom.shareholderRegistryBalance = maybeShareholderRegistryBalance.value;
+      }
+      daoUserFrom.save();
+    }
   }
 
   if (addressTo != Address.zero()) {
     const daoUserTo = getDaoUser(addressToHex);
-    daoUserTo.votingPower = votingContract.getVotingPower(addressTo);
-    daoUserTo.shareholderRegistryBalance = shareholderRegistryContract.balanceOf(
-      addressTo
-    );
-    daoUserTo.save();
+    const maybeVotingPower = votingContract.try_getVotingPower(addressFrom);
+    if (!maybeVotingPower.reverted) {
+      daoUserTo.votingPower = maybeVotingPower.value;
+      const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(addressFrom)
+      if (!maybeShareholderRegistryBalance.reverted)  {
+        daoUserTo.shareholderRegistryBalance = maybeShareholderRegistryBalance.value;
+      }
+      daoUserTo.save();
+    }
   }
 
   const daoManagerEntity = getDaoManagerEntity();
-  daoManagerEntity.totalVotingPower = votingContract.getTotalVotingPower();
-  daoManagerEntity.save();
+  const maybeTotalVotingPower = votingContract.try_getTotalVotingPower();
+  if (!maybeTotalVotingPower.reverted) {
+    daoManagerEntity.totalVotingPower = maybeTotalVotingPower.value;
+    daoManagerEntity.save();
+  }
 }
