@@ -1,5 +1,5 @@
 import { Address, log } from "@graphprotocol/graph-ts";
-import { Offer } from "../generated/schema";
+import { Offer, OfferMatch } from "../generated/schema";
 import {
   OfferCreated,
   OfferMatched,
@@ -19,6 +19,7 @@ export function handleOfferCreated(event: OfferCreated): void {
   offerEntity.expirationTimestamp = event.params.expiredAt;
   offerEntity.createTimestamp = event.block.timestamp;
   offerEntity.expiredOnTransfer = false;
+  offerEntity.matches = [];
 
   offerEntity.save();
 
@@ -39,7 +40,14 @@ export function handleOfferMatched(event: OfferMatched): void {
     return;
   }
 
+  const offerMatchEntity = new OfferMatch(offerId + "-" + event.block.timestamp.toString());
+  offerMatchEntity.amount = event.params.amount;
+  offerMatchEntity.matchedFrom = event.params.to;
+  offerMatchEntity.createTimestamp = event.block.timestamp;
+  offerMatchEntity.save();
+
   offerEntity.amount = offerEntity.amount.minus(event.params.amount);
+  offerEntity.matches.push(offerMatchEntity.id);
   offerEntity.save();
   // save dao user to refresh all the balances
   saveDaoUserData(Address.fromBytes(offerEntity.from), event.block);

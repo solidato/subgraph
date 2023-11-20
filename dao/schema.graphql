@@ -55,6 +55,13 @@ type DelegationUser @entity {
   delegated: Bytes!
 }
 
+type OfferMatch @entity {
+  id: ID!
+  matchedFrom: Bytes!
+  amount: BigInt!
+  createTimestamp: BigInt!
+}
+
 type Offer @entity {
   id: ID!
   from: Bytes!
@@ -63,6 +70,7 @@ type Offer @entity {
   createTimestamp: BigInt!
 
   expiredOnTransfer: Boolean!
+  matches: [OfferMatch!]!
 }
 
 type DaoUser @entity {
@@ -103,6 +111,7 @@ type Redemption @entity {
   amount: BigInt!
   redemptionHistory: [RedemptionHistory!]!
   createTimestamp: BigInt!
+  updateTimestamp: BigInt!
   createBy: Bytes!
   startTimestamp: BigInt!
   endTimestamp: BigInt!

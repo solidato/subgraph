@@ -1,13 +1,13 @@
 specVersion: 0.0.5
 schema:
   file: ./schema.graphql
+features:
+  - ipfsOnEthereumContracts
 dataSources:
   - kind: ethereum
     name: ResolutionManager
     source:
       abi: ResolutionManager
-      address: "0x62279b0624da9Ade912273C9F88287596c66e1F1"
-      startBlock: 41716626
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -40,13 +40,11 @@ dataSources:
         - event: ResolutionRejected(indexed address,indexed uint256)
           handler: handleResolutionRejected
       file: ./src/resolution-manager-mapping.ts
-    network: mumbai
+    network: evmos
   - kind: ethereum
     name: ShareholderRegistry
     source:
       abi: ShareholderRegistry
-      address: "0x5b8f86C4010e58347afCEB7820A1c410b845D5d1"
-      startBlock: 41716600
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -64,13 +62,11 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/shareholder-registry-mapping.ts
-    network: mumbai
+    network: evmos
   - kind: ethereum
     name: Voting
     source:
       abi: Voting
-      address: "0x74FdD2b10cF71B9b7AEB402F90aDE1a67D9C2258"
-      startBlock: 41716462
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -90,13 +86,11 @@ dataSources:
         - event: DelegateChanged(indexed address,address,address)
           handler: handleDelegateChanged
       file: ./src/voting-mapping.ts
-    network: mumbai
+    network: evmos
   - kind: ethereum
     name: InternalMarket
     source:
       abi: InternalMarket
-      address: "0xd345D53144E237C69F08B543553FAFc78d14Ab24"
-      startBlock: 41716575
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -118,13 +112,11 @@ dataSources:
         - event: OfferMatched(uint128,address,address,uint256)
           handler: handleOfferMatched
       file: ./src/internal-market-mapping.ts
-    network: mumbai
+    network: evmos
   - kind: ethereum
     name: GovernanceToken
     source:
       abi: GovernanceToken
-      address: "0xf4537D936a31abb933acdBF288a274eC732B15aF"
-      startBlock: 41716500
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -146,13 +138,11 @@ dataSources:
         - event: VestingSet(address,uint256)
           handler: handleVestingSet
       file: ./src/governance-token-mapping.ts
-    network: mumbai
+    network: evmos
   - kind: ethereum
     name: NeokingdomToken
     source:
       abi: NeokingdomToken
-      address: "0xdC6dc5c5524A77633EF1b3eFb08fe0950A155E44"
-      startBlock: 41716528
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -172,13 +162,11 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/neokingdom-token-mapping.ts
-    network: mumbai
+    network: evmos
   - kind: ethereum
     name: RedemptionController
     source:
       abi: RedemptionController
-      address: "0xF610a6EB92023DCb716E218Bf8225d862F8e4A0e"
-      startBlock: 41716550
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -195,4 +183,4 @@ dataSources:
         - event: RedemptionUpdated(address,uint256,uint256,uint256)
           handler: handleRedemptionUpdated
       file: ./src/redemption-controller-mapping.ts
-    network: mumbai
+    network: evmos

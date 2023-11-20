@@ -30,8 +30,11 @@ export function handleTransfer(event: Transfer): void {
   );
 
   const daoManagerEntity = getDaoManagerEntity();
-  daoManagerEntity.totalVotingPower = votingContract.getTotalVotingPower();
-  daoManagerEntity.save();
+  const maybeTotalVotingPower = votingContract.try_getTotalVotingPower();
+  if (!maybeTotalVotingPower.reverted) {
+    daoManagerEntity.totalVotingPower = maybeTotalVotingPower.value;
+    daoManagerEntity.save();
+  }
 }
 
 export function handleVestingSet(event: VestingSet): void {
