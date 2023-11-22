@@ -163,24 +163,3 @@ dataSources:
           handler: handleTransfer
       file: ./src/neokingdom-token-mapping.ts
     network: evmos
-  - kind: ethereum
-    name: RedemptionController
-    source:
-      abi: RedemptionController
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Redemption
-        - RedemptionHistoryItem
-      abis:
-        - name: RedemptionController
-          file: ./abis/RedemptionController.json
-      eventHandlers:
-        - event: RedemptionCreated(address,uint256,uint256,uint256,uint256)
-          handler: handleRedemptionCreated
-        - event: RedemptionUpdated(address,uint256,uint256,uint256)
-          handler: handleRedemptionUpdated
-      file: ./src/redemption-controller-mapping.ts
-    network: evmos
