@@ -39,9 +39,6 @@ const setValuesFromResolutionContract = (
   executionDetails: ResolutionManager__getExecutionDetailsResult
 ): void => {
   let ipfsDataURI = blockChainResolution.getDataURI();
-  if (ipfsDataURI === "QmZDKyVutvRDNACvpJ5MvoT9jwLYqR7EqFwXXhXTDkJTnB") {
-    ipfsDataURI = "QmeyiwN37xnNRYbeyhK9gBNu92XgtjFxSi9R2R45Kpf1cR";
-  }
 
   const resolutionTypeEntity = ResolutionType.load(
     blockChainResolution.getResolutionTypeId().toString()
@@ -62,7 +59,7 @@ const setValuesFromResolutionContract = (
   }
   resolutionEntity.executionTo = executionTo;
   resolutionEntity.executionData = executionDetails.value1;
-
+  
   // get other resolution data living on ipfs
   const ipfsRawData = ipfs.cat(ipfsDataURI);
   if (!ipfsRawData) {
@@ -70,6 +67,8 @@ const setValuesFromResolutionContract = (
       resolutionEntity.id,
       ipfsDataURI,
     ]);
+    resolutionEntity.title = "";
+    resolutionEntity.content = "";
     resolutionEntity.save();
     return;
   }
