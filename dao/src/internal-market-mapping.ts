@@ -19,6 +19,7 @@ export function handleOfferCreated(event: OfferCreated): void {
   offerEntity.expirationTimestamp = event.params.expiredAt;
   offerEntity.createTimestamp = event.block.timestamp;
   offerEntity.expiredOnTransfer = false;
+  offerEntity.matches = [];
 
   offerEntity.save();
 
@@ -38,10 +39,17 @@ export function handleOfferMatched(event: OfferMatched): void {
     log.error("Offer {} not found", [offerId]);
     return;
   }
+
+  const offerMatchEntity = new OfferMatch(offerId + "-" + event.block.timestamp.toString());
+  offerMatchEntity.amount = event.params.amount;
+  offerMatchEntity.matchedFrom = event.params.to;
+  offerMatchEntity.createTimestamp = event.block.timestamp;
   
   offerEntity.amount = offerEntity.amount.minus(event.params.amount);
+  offerEntity.matches.concat([offerMatchEntity.id]);
   
   offerEntity.save();
+  offerMatchEntity.save();
   
   // save dao user to refresh all the balances
   saveDaoUserData(Address.fromBytes(offerEntity.from), event.block);
