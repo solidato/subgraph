@@ -38,7 +38,11 @@ const setValuesFromResolutionContract = (
   blockChainResolution: ResolutionManager__resolutionsResult,
   executionDetails: ResolutionManager__getExecutionDetailsResult
 ): void => {
-  const ipfsDataURI = blockChainResolution.getDataURI();
+  let ipfsDataURI = blockChainResolution.getDataURI();
+  if (ipfsDataURI === "QmZDKyVutvRDNACvpJ5MvoT9jwLYqR7EqFwXXhXTDkJTnB") {
+    ipfsDataURI = "QmeyiwN37xnNRYbeyhK9gBNu92XgtjFxSi9R2R45Kpf1cR";
+  }
+
   const resolutionTypeEntity = ResolutionType.load(
     blockChainResolution.getResolutionTypeId().toString()
   ) as ResolutionType;
@@ -81,12 +85,14 @@ const setValuesFromResolutionContract = (
     resolutionEntity.content = content.toString();
   }
   if (metadata) {
-    const metadataObject = metadata.toObject()
+    const metadataObject = metadata.toObject();
     const isMonthlyRewards = metadataObject.get("isMonthlyRewards");
     const month = metadataObject.get("month");
     const resolutionMetadata = new ResolutionMetadata(resolutionEntity.id);
     resolutionMetadata.month = month ? month.toString() : "";
-    resolutionMetadata.isMonthlyRewards = isMonthlyRewards ? isMonthlyRewards.toBool() : false;
+    resolutionMetadata.isMonthlyRewards = isMonthlyRewards
+      ? isMonthlyRewards.toBool()
+      : false;
     resolutionMetadata.save();
 
     resolutionEntity.metadata = resolutionMetadata.id;
