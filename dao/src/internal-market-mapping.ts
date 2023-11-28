@@ -3,6 +3,7 @@ import { Offer, OfferMatch } from "../generated/schema";
 import {
   OfferCreated,
   OfferMatched,
+  Withdrawn,
 } from "../generated/InternalMarket/InternalMarket";
 import { getDaoUser } from "./dao-user";
 import saveDaoUserData from "./save-dao-user-data";
@@ -54,4 +55,9 @@ export function handleOfferMatched(event: OfferMatched): void {
   
   // save dao user to refresh all the balances
   saveDaoUserData(Address.fromBytes(offerEntity.from), event.block);
+}
+
+export function handleWithdrawn(event: Withdrawn): void {
+  // save dao user to refresh all the balances
+  saveDaoUserData(Address.fromBytes(event.params.from), event.block);
 }

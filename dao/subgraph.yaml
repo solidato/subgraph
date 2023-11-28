@@ -111,6 +111,8 @@ dataSources:
           handler: handleOfferCreated
         - event: OfferMatched(uint128,address,address,uint256)
           handler: handleOfferMatched
+        - event: Withdrawn(address,address,uint256)
+          handler: handleWithdrawn
       file: ./src/internal-market-mapping.ts
     network: evmos
   - kind: ethereum
