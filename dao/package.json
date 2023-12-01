@@ -13,7 +13,7 @@
     "create-local:crowdpunk": "graph create --node http://localhost:8020/ CrowdpunkDAO",
     "remove-local:crowdpunk": "graph remove --node http://localhost:8020/ CrowdpunkDAO",
     "deploy-production:crowdpunk": "NETWORK=evmos pnpm build && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 CrowdpunkDAO --network-file networks-crowdpunk.json --network evmos",
-    "deploy-staging:crowdpunk": "NETWORK=tevmos pnpm build && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 CrowdpunkDAO --network-file networks-crowdpunk.json --network tevmos",
+    "deploy-staging:crowdpunk": "NETWORK=tevmos pnpm build && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 CrowdpunkDAO/staging --network-file networks-crowdpunk.json --network tevmos",
     "generate:contracts-addresses:neokingdom": "CURRENT_DAO=neokingdom node ./generate-contract-addresses.js",
     "generate:contracts-addresses:crowdpunk": "CURRENT_DAO=crowdpunk node ./generate-contract-addresses.js"
   },
