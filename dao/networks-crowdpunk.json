@@ -3,63 +3,51 @@
   "tevmos": {
     "DAORoles": {
       "address": "0x2Bb25F71B21984651FFdFbdD4071ebc7D89E0801",
-      "startBlock": 19136079,
-      "blockHash": "0xaa8dac580538266c451e8e6401f097cb7555b48a6609fd863ea6ddf77ff2c932"
+      "startBlock": 19136079
     },
     "TokenMock": {
       "address": "0x7D38De4C2Bb5E2662310741cA9C1d9b778596E27",
-      "startBlock": 19136086,
-      "blockHash": "0x9724aa07f757ca242c27199de4290d72ceb33d03f247160c85ab0e8fa410754f"
+      "startBlock": 19136086
     },
     "PriceOracle": {
       "address": "0xccd8a4F1Ff3cbaB670349adE2C5320780bBff178",
-      "startBlock": 14787833,
-      "blockHash": "0xd2a74a54d52f9ead8009b325b64e1687642ba9f69e6aaeb90e0d46197438e3d0"
+      "startBlock": 14787833
     },
     "Voting": {
       "address": "0x25DCc4524d771723b30A29ff0112Da6bAccEA88A",
-      "startBlock": 19136109,
-      "blockHash": "0x2c478214869137303b67f7a41f8c60cb48264ccc016d97e163f5c36fd3da79c9"
+      "startBlock": 19136109
     },
     "GovernanceToken": {
       "address": "0x05839c0072ee24F51026c16f730607D849416176",
-      "startBlock": 19136116,
-      "blockHash": "0xc0d2ac9b896a19c34f12d5cca555824e730c04103c6ae1bad66c13b850cb92e6"
+      "startBlock": 19136116
     },
     "NeokingdomToken": {
       "address": "0xE909f73b6b54ffCC0C1C3aE500081170762316B4",
-      "startBlock": 19136122,
-      "blockHash": "0x5209119e2f4574a8cad512649e5ca2f52468e6c7448926f6952bcd15f19a4ddb"
+      "startBlock": 19136122
     },
     "RedemptionController": {
       "address": "0xA3F1DaB63900e2C4bfaEF2E61807368b3a85fdDe",
-      "startBlock": 19136129,
-      "blockHash": "0xf6821ee3d4f2211ad51449c469c2d476dc534c56c1e8695500d01313d0206d09"
+      "startBlock": 19136129
     },
     "InternalMarket": {
       "address": "0xB7EEbdb5e8AcB0078A4B5ac515E56Ab0403DF0A8",
-      "startBlock": 19136137,
-      "blockHash": "0x84c7ccbabca105863cd6d6e330611e64f07df3ccd3eae6ba7f19f837c144d1f5"
+      "startBlock": 19136137
     },
     "ShareholderRegistry": {
       "address": "0x6154E046b404F5209e44bCe3ee852bF83840FC6a",
-      "startBlock": 19136145,
-      "blockHash": "0x1fc61a3b5e925c3fd47d1d6877545ef2504532d94f19b82f0e62c6ab8697b6e7"
+      "startBlock": 19136145
     },
     "ResolutionManager": {
       "address": "0x25a8A2E461B73E9f5D3F69EC173877cff83038F0",
-      "startBlock": 19136152,
-      "blockHash": "0xfbfbf683aa379456f67e91f920d2e156b4dcabe28c8a86e85d02ca8a377d6f82"
+      "startBlock": 19136152
     },
     "ProxyAdmin": {
       "address": "0x6bc5427b0D6F8d99A5bd968608b0EEe19e2F18A2",
-      "startBlock": 19136159,
-      "blockHash": "0xe54fffc29a2eab4d9935095a9c3777d749857297a37e23e7fd4ae8414df0bd90"
+      "startBlock": 19136159
     },
     "DIAOracleV2Mock": {
       "address": "0x81A9523D5391E19db61D753dbf3C85D41922c6aA",
-      "startBlock": 19136092,
-      "blockHash": "0xdbfe13cf2b3b254451bc8b1c1422c3155e4533786fb6ddfa9eff5918beefd61c"
+      "startBlock": 19136092
     }
   }
 }
