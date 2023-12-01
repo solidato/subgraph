@@ -1,6 +1,13 @@
-const networks = require("./networks.json");
+const networksNeokingdom = require("./networks-neokingdom.json");
+const networksCrowdpunk = require("./networks-crowdpunk.json");
 const fs = require("fs");
 
+const networksChooser = {
+  neokingdom: networksNeokingdom,
+  crowdpunk: networksCrowdpunk,
+}
+
+const networks = networksChooser[process.env.CURRENT_DAO || "neokingdom"]
 const network = process.env.NETWORK || "evmos";
 const votingAddress = networks[network]?.Voting?.address;
 const internalMarketAddress = networks[network]?.InternalMarket?.address;

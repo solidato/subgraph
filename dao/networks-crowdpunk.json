@@ -1,0 +1,82 @@
+{
+  "evmos": {
+    "DAORoles": {
+      "address": "0x6A176C92985430535E738A79749A4137BEC6C4Db",
+      "startBlock": 12935879
+    },
+    "Voting": {
+      "address": "0x5DC219C8CaeF7c9ECd0b97372e6Ef4fC5D827975",
+      "startBlock": 12935961
+    },
+    "GovernanceToken": {
+      "address": "0x05d1b2355721903152768F0ec1B105Be1c35BCb4",
+      "startBlock": 12935980
+    },
+    "NeokingdomToken": {
+      "address": "0x655ecB57432CC1370f65e5dc2309588b71b473A9",
+      "startBlock": 12936015
+    },
+    "RedemptionController": {
+      "address": "0x7045bfaB66B55074C56aBeE34308CDa0916e086C",
+      "startBlock": 12936748
+    },
+    "InternalMarket": {
+      "address": "0x7687155fB855e24d1416C288CbaC0AFC3B65353c",
+      "startBlock": 12936774
+    },
+    "ShareholderRegistry": {
+      "address": "0x4706eD7a10064801F260BBf94743f241FCEf815e",
+      "startBlock": 12936808
+    },
+    "ResolutionManager": {
+      "address": "0xE5714C29b7acE2C6a3A80BE511ED7e5b92594204",
+      "startBlock": 12936843
+    }
+  },
+  "tevmos": {
+    "DAORoles": {
+      "address": "0x27FAE0771CB1be74904647F0f863D6F14328F8a1",
+      "startBlock": 14787827
+    },
+    "TokenMock": {
+      "address": "0x0Ac6B9A97331CB4Fe83C97980e81c8C8b28381Bc",
+      "startBlock": 14787830
+    },
+    "PriceOracle": {
+      "address": "0xccd8a4F1Ff3cbaB670349adE2C5320780bBff178",
+      "startBlock": 14787833
+    },
+    "Voting": {
+      "address": "0x64cc16a37b83adAC5c0c663807920A9B82E3C143",
+      "startBlock": 14787835
+    },
+    "GovernanceToken": {
+      "address": "0x1401859D3787b3283f995922a80574F61a7d1287",
+      "startBlock": 14787837
+    },
+    "NeokingdomToken": {
+      "address": "0x9c75Bf0571854b69fFa1a27ce7f6d895b7cA167a",
+      "startBlock": 14787838
+    },
+    "RedemptionController": {
+      "address": "0x4AB233B5dD59F6f1932ED8e3b5c104F0Ad5BCb8d",
+      "startBlock": 14787840
+    },
+    "InternalMarket": {
+      "address": "0x9C4Ae47e8d46a632C99AcB58A2f8701aC3436afb",
+      "startBlock": 14787843
+    },
+    "ShareholderRegistry": {
+      "address": "0xdC21500Fb088E9BDbeC7024ce5EB55bE25D56CF6",
+      "startBlock": 14787846
+    },
+    "ResolutionManager": {
+      "address": "0xF686a67148d59237E3D578d088616634fA8c5473",
+      "startBlock": 14787848
+    },
+    "ProxyAdmin": {
+      "address": "0x2E0d7579070C953672aEA8f10Fa3A96521230EaD",
+      "startBlock": 14787850
+    }
+  }
+}
