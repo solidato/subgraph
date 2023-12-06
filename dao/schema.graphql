@@ -122,3 +122,13 @@ type TokenMinting @entity {
   amounts: [BigInt!]!
   mintedTimestamp: BigInt!
 }
+
+type Deposit @entity {
+  id: ID!
+  amount: BigInt!
+  from: Bytes!
+  settlementTimestamp: BigInt!
+  createTimestamp: BigInt!
+  settleTimestamp: BigInt
+  settled: Boolean!
+}

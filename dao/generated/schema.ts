@@ -920,19 +920,6 @@ export class Offer extends Entity {
     this.set("createTimestamp", Value.fromBigInt(value));
   }
 
-  get fullyMatched(): boolean {
-    let value = this.get("fullyMatched");
-    if (!value || value.kind == ValueKind.NULL) {
-      return false;
-    } else {
-      return value.toBoolean();
-    }
-  }
-
-  set fullyMatched(value: boolean) {
-    this.set("fullyMatched", Value.fromBoolean(value));
-  }
-
   get expiredOnTransfer(): boolean {
     let value = this.get("expiredOnTransfer");
     if (!value || value.kind == ValueKind.NULL) {
@@ -1514,5 +1501,127 @@ export class TokenMinting extends Entity {
 
   set mintedTimestamp(value: BigInt) {
     this.set("mintedTimestamp", Value.fromBigInt(value));
+  }
+}
+
+export class Deposit extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Deposit entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type Deposit must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Deposit", id.toString(), this);
+    }
+  }
+
+  static loadInBlock(id: string): Deposit | null {
+    return changetype<Deposit | null>(store.get_in_block("Deposit", id));
+  }
+
+  static load(id: string): Deposit | null {
+    return changetype<Deposit | null>(store.get("Deposit", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get from(): Bytes {
+    let value = this.get("from");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set from(value: Bytes) {
+    this.set("from", Value.fromBytes(value));
+  }
+
+  get settlementTimestamp(): BigInt {
+    let value = this.get("settlementTimestamp");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set settlementTimestamp(value: BigInt) {
+    this.set("settlementTimestamp", Value.fromBigInt(value));
+  }
+
+  get createTimestamp(): BigInt {
+    let value = this.get("createTimestamp");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set createTimestamp(value: BigInt) {
+    this.set("createTimestamp", Value.fromBigInt(value));
+  }
+
+  get settleTimestamp(): BigInt | null {
+    let value = this.get("settleTimestamp");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set settleTimestamp(value: BigInt | null) {
+    if (!value) {
+      this.unset("settleTimestamp");
+    } else {
+      this.set("settleTimestamp", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
+  get settled(): boolean {
+    let value = this.get("settled");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set settled(value: boolean) {
+    this.set("settled", Value.fromBoolean(value));
   }
 }
