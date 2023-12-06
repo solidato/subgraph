@@ -46,6 +46,14 @@ worker@neokingdom2:~/NEOKingdomDAO/subgraph/dao$ pnpm run remove-local:crowdpunk
 
 ## Troubleshooting
 
+### Check the logs in the graph-node container
+```
+worker@neokingdom2:~$ docker ps | grep node
+88ccf892a3a1   graphprotocol/graph-node:d33bb7e
+
+worker@neokingdom2:~$ docker logs 88ccf892a3a1 -n1000 -f
+```
+
 ### ERRO the genesis block hash for chain tevmos has changed from X to Y since the last time we ran, component: BlockStore
 
 See: https://github.com/graphprotocol/graph-node/issues/3655
