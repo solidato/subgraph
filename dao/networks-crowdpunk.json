@@ -1,0 +1,53 @@
+{
+  "evmos": {},
+  "tevmos": {
+    "DAORoles": {
+      "address": "0x2Bb25F71B21984651FFdFbdD4071ebc7D89E0801",
+      "startBlock": 19136079
+    },
+    "TokenMock": {
+      "address": "0x7D38De4C2Bb5E2662310741cA9C1d9b778596E27",
+      "startBlock": 19136086
+    },
+    "PriceOracle": {
+      "address": "0xccd8a4F1Ff3cbaB670349adE2C5320780bBff178",
+      "startBlock": 14787833
+    },
+    "Voting": {
+      "address": "0x25DCc4524d771723b30A29ff0112Da6bAccEA88A",
+      "startBlock": 19136109
+    },
+    "GovernanceToken": {
+      "address": "0x05839c0072ee24F51026c16f730607D849416176",
+      "startBlock": 19136116
+    },
+    "NeokingdomToken": {
+      "address": "0xE909f73b6b54ffCC0C1C3aE500081170762316B4",
+      "startBlock": 19136122
+    },
+    "RedemptionController": {
+      "address": "0xA3F1DaB63900e2C4bfaEF2E61807368b3a85fdDe",
+      "startBlock": 19136129
+    },
+    "InternalMarket": {
+      "address": "0xB7EEbdb5e8AcB0078A4B5ac515E56Ab0403DF0A8",
+      "startBlock": 19136137
+    },
+    "ShareholderRegistry": {
+      "address": "0x6154E046b404F5209e44bCe3ee852bF83840FC6a",
+      "startBlock": 19136145
+    },
+    "ResolutionManager": {
+      "address": "0x25a8A2E461B73E9f5D3F69EC173877cff83038F0",
+      "startBlock": 19136152
+    },
+    "ProxyAdmin": {
+      "address": "0x6bc5427b0D6F8d99A5bd968608b0EEe19e2F18A2",
+      "startBlock": 19136159
+    },
+    "DIAOracleV2Mock": {
+      "address": "0x81A9523D5391E19db61D753dbf3C85D41922c6aA",
+      "startBlock": 19136092
+    }
+  }
+}
