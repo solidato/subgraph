@@ -920,19 +920,6 @@ export class Offer extends Entity {
     this.set("createTimestamp", Value.fromBigInt(value));
   }
 
-  get fullyMatched(): boolean {
-    let value = this.get("fullyMatched");
-    if (!value || value.kind == ValueKind.NULL) {
-      return false;
-    } else {
-      return value.toBoolean();
-    }
-  }
-
-  set fullyMatched(value: boolean) {
-    this.set("fullyMatched", Value.fromBoolean(value));
-  }
-
   get expiredOnTransfer(): boolean {
     let value = this.get("expiredOnTransfer");
     if (!value || value.kind == ValueKind.NULL) {
