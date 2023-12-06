@@ -39,7 +39,7 @@ ssh worker@api2.neokingdom.org
 
 worker@neokingdom2:~$ cd NEOKingdomDAO/subgraph/dao
 worker@neokingdom2:~/NEOKingdomDAO/subgraph/dao$ git pull
-worker@neokingdom2:~/NEOKingdomDAO/subgraph/dao$ pnpm create-local:crowdpunk; pnpm deploy-production:crowdpunk
+worker@neokingdom2:~/NEOKingdomDAO/subgraph/dao$ pnpm run remove-local:crowdpunk; pnpm create-local:crowdpunk; pnpm deploy-production:crowdpunk
 ```
 
 ✅
