@@ -30,6 +30,8 @@ Connect to worker@api2.neokingdom.org, run `tmux attach` to connect to the curre
 
 Note: At the moment, `:DAO` can be `neokingdom`, `crowdpunk` or `teledisko`
 
+Another important note: for `neokingdom`, you also need to export the $FORK env variable. 
+
 ### Sample deployment of a new subgraph (i.e. Crowdpunk)
 
 ℹ️ Update the network json (if not updated already), push the code.
