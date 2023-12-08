@@ -4,7 +4,7 @@ import {
   Transfer,
 } from "../generated/ShareholderRegistry/ShareholderRegistry";
 import { log, Bytes, Address } from "@graphprotocol/graph-ts";
-import { getDaoManagerEntity } from "./dao-manager";
+import { getDaoManagerEntity, reloadTotalVotingPower } from "./dao-manager";
 import { getDaoUser } from "./dao-user";
 import { Voting } from "../generated/Voting/Voting";
 import {
@@ -142,16 +142,7 @@ export function handleStatusChanged(event: StatusChanged): void {
     );
   }
 
-  const votingContract = Voting.bind(
-    Address.fromString(VOTING_CONTRACT_ADDRESS)
-  );
-  const maybeTotalVotingPower = votingContract.try_getTotalVotingPower();
-  if (!maybeTotalVotingPower.reverted) {
-    daoManagerEntity.totalVotingPower = maybeTotalVotingPower.value;
-  } else {
-    log.critical("unable to get voting power", []);
-  }
-
+  reloadTotalVotingPower();
   daoManagerEntity.save();
   return;
 }
@@ -202,10 +193,5 @@ export function handleTransfer(event: Transfer): void {
     }
   }
 
-  const daoManagerEntity = getDaoManagerEntity();
-  const maybeTotalVotingPower = votingContract.try_getTotalVotingPower();
-  if (!maybeTotalVotingPower.reverted) {
-    daoManagerEntity.totalVotingPower = maybeTotalVotingPower.value;
-    daoManagerEntity.save();
-  }
+  reloadTotalVotingPower();
 }
