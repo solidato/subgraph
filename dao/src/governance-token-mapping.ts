@@ -5,7 +5,7 @@ import {
 } from "../generated/GovernanceToken/GovernanceToken";
 import { getDaoUser } from "./dao-user";
 
-import { getDaoManagerEntity } from "./dao-manager";
+import { getDaoManagerEntity, reloadTotalVotingPower } from "./dao-manager";
 import saveDaoUserData from "./save-dao-user-data";
 import { VOTING_CONTRACT_ADDRESS } from "../generated/addresses";
 import { Voting } from "../generated/Voting/Voting";
@@ -25,16 +25,7 @@ export function handleTransfer(event: Transfer): void {
 
   saveDaoUserData(addressTo, event.block);
 
-  const votingContract = Voting.bind(
-    Address.fromString(VOTING_CONTRACT_ADDRESS)
-  );
-
-  const daoManagerEntity = getDaoManagerEntity();
-  const maybeTotalVotingPower = votingContract.try_getTotalVotingPower();
-  if (!maybeTotalVotingPower.reverted) {
-    daoManagerEntity.totalVotingPower = maybeTotalVotingPower.value;
-    daoManagerEntity.save();
-  }
+  reloadTotalVotingPower();
 }
 
 export function handleVestingSet(event: VestingSet): void {
