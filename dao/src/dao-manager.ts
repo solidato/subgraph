@@ -23,7 +23,7 @@ export function getDaoManagerEntity(): DaoManager {
   return newDaoManagerEntity;
 }
 
-export function reloadTotalVotingPower() {
+export function reloadTotalVotingPower(): void {
   const votingContract = Voting.bind(
     Address.fromString(VOTING_CONTRACT_ADDRESS)
   );
