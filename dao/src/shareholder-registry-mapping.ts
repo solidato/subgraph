@@ -57,7 +57,7 @@ function getNewAddressesWithoutAddress(
 export function handleStatusChanged(event: StatusChanged): void {
   const address = event.params.account;
   const addressHexString = address.toHexString();
-  const daoMangerEntity = getDaoManagerEntity();
+  const daoManagerEntity = getDaoManagerEntity();
 
   const previousHexString = event.params.previous.toHexString();
   const currentHexString = event.params.current.toHexString();
@@ -79,70 +79,80 @@ export function handleStatusChanged(event: StatusChanged): void {
   // remove the address from the "previous" list/s
   if (previousHexString == MANAGING_BOARD_STATUS) {
     const newManagingBoardAddresses = getNewAddressesWithoutAddress(
-      daoMangerEntity.managingBoardAddresses,
+      daoManagerEntity.managingBoardAddresses,
       address
     );
-    daoMangerEntity.managingBoardAddresses = newManagingBoardAddresses;
+    daoManagerEntity.managingBoardAddresses = newManagingBoardAddresses;
     const newContributorsAddresses = getNewAddressesWithoutAddress(
-      daoMangerEntity.contributorsAddresses,
+      daoManagerEntity.contributorsAddresses,
       address
     );
-    daoMangerEntity.contributorsAddresses = newContributorsAddresses;
+    daoManagerEntity.contributorsAddresses = newContributorsAddresses;
   }
 
   if (previousHexString == CONTRIBUTOR_STATUS) {
     const newContributorsAddresses = getNewAddressesWithoutAddress(
-      daoMangerEntity.contributorsAddresses,
+      daoManagerEntity.contributorsAddresses,
       address
     );
-    daoMangerEntity.contributorsAddresses = newContributorsAddresses;
+    daoManagerEntity.contributorsAddresses = newContributorsAddresses;
   }
 
   if (previousHexString == INVESTOR_STATUS) {
     const newInvestorsAddresses = getNewAddressesWithoutAddress(
-      daoMangerEntity.investorsAddresses,
+      daoManagerEntity.investorsAddresses,
       address
     );
-    daoMangerEntity.investorsAddresses = newInvestorsAddresses;
+    daoManagerEntity.investorsAddresses = newInvestorsAddresses;
   }
 
   if (previousHexString == SHAREHOLDER_STATUS) {
     const newShareholdersAddresses = getNewAddressesWithoutAddress(
-      daoMangerEntity.shareholdersAddresses,
+      daoManagerEntity.shareholdersAddresses,
       address
     );
-    daoMangerEntity.shareholdersAddresses = newShareholdersAddresses;
+    daoManagerEntity.shareholdersAddresses = newShareholdersAddresses;
   }
 
   // add the address to the "current" list/s
   if (currentHexString == MANAGING_BOARD_STATUS) {
-    daoMangerEntity.managingBoardAddresses = daoMangerEntity.managingBoardAddresses.concat(
+    daoManagerEntity.managingBoardAddresses = daoManagerEntity.managingBoardAddresses.concat(
       [address]
     );
-    daoMangerEntity.contributorsAddresses = daoMangerEntity.contributorsAddresses.concat(
+    daoManagerEntity.contributorsAddresses = daoManagerEntity.contributorsAddresses.concat(
       [address]
     );
   }
 
   if (currentHexString == CONTRIBUTOR_STATUS) {
-    daoMangerEntity.contributorsAddresses = daoMangerEntity.contributorsAddresses.concat(
+    daoManagerEntity.contributorsAddresses = daoManagerEntity.contributorsAddresses.concat(
       [address]
     );
   }
 
   if (currentHexString == INVESTOR_STATUS) {
-    daoMangerEntity.investorsAddresses = daoMangerEntity.investorsAddresses.concat(
+    daoManagerEntity.investorsAddresses = daoManagerEntity.investorsAddresses.concat(
       [address]
     );
   }
 
   if (currentHexString == SHAREHOLDER_STATUS) {
-    daoMangerEntity.shareholdersAddresses = daoMangerEntity.shareholdersAddresses.concat(
+    daoManagerEntity.shareholdersAddresses = daoManagerEntity.shareholdersAddresses.concat(
       [address]
     );
   }
 
-  daoMangerEntity.save();
+  const votingContract = Voting.bind(
+    Address.fromString(VOTING_CONTRACT_ADDRESS)
+  );
+  const maybeTotalVotingPower = votingContract.try_getTotalVotingPower();
+  if (!maybeTotalVotingPower.reverted) {
+    daoManagerEntity.totalVotingPower = maybeTotalVotingPower.value;
+  } else {
+    log.critical("unable to get voting power", []);
+  }
+
+  daoManagerEntity.save();
   return;
 }
 
@@ -165,9 +175,12 @@ export function handleTransfer(event: Transfer): void {
     const maybeVotingPower = votingContract.try_getVotingPower(addressFrom);
     if (!maybeVotingPower.reverted) {
       daoUserFrom.votingPower = maybeVotingPower.value;
-      const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(addressFrom)
-      if (!maybeShareholderRegistryBalance.reverted)  {
-        daoUserFrom.shareholderRegistryBalance = maybeShareholderRegistryBalance.value;
+      const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(
+        addressFrom
+      );
+      if (!maybeShareholderRegistryBalance.reverted) {
+        daoUserFrom.shareholderRegistryBalance =
+          maybeShareholderRegistryBalance.value;
       }
       daoUserFrom.save();
     }
@@ -178,9 +191,12 @@ export function handleTransfer(event: Transfer): void {
     const maybeVotingPower = votingContract.try_getVotingPower(addressFrom);
     if (!maybeVotingPower.reverted) {
       daoUserTo.votingPower = maybeVotingPower.value;
-      const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(addressFrom)
-      if (!maybeShareholderRegistryBalance.reverted)  {
-        daoUserTo.shareholderRegistryBalance = maybeShareholderRegistryBalance.value;
+      const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(
+        addressFrom
+      );
+      if (!maybeShareholderRegistryBalance.reverted) {
+        daoUserTo.shareholderRegistryBalance =
+          maybeShareholderRegistryBalance.value;
       }
       daoUserTo.save();
     }
