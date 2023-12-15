@@ -1,4 +1,37 @@
 {
-  "evmos": {},
+  "evmos": {
+    "DAORoles": {
+      "address": "0x89dfa492458DED062be1B037E19EE373AFce9D19",
+      "startBlock": 17743366
+    },
+    "Voting": {
+      "address": "0xb0439B08fBB79eF52dd606c9A50727E38fDfB643",
+      "startBlock": 17743383
+    },
+    "GovernanceToken": {
+      "address": "0x9dA033cBf72D2f082733B6b858bbbFF2c0031B7f",
+      "startBlock": 17743427
+    },
+    "NeokingdomToken": {
+      "address": "0xB193C7dAE3cc614EFcA99c17dBa8Ad94D21be4Eb",
+      "startBlock": 17743456
+    },
+    "RedemptionController": {
+      "address": "0x2453cB8BE2f6b82920249D20961002FA9Def2425",
+      "startBlock": 17743471
+    },
+    "InternalMarket": {
+      "address": "0xBb86A54db14166B77d7c129411e098323578d36B",
+      "startBlock": 17743496
+    },
+    "ShareholderRegistry": {
+      "address": "0x2A631009D54A3e73CcEc3aeBc5d5324Ef91d3968",
+      "startBlock": 17743525
+    },
+    "ResolutionManager": {
+      "address": "0xD8DFeB2C9903f298E53f763dD9F97596bcB30ca4",
+      "startBlock": 17743556
+    }
+  },
   "tevmos": {}
 }
