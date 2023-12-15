@@ -20,7 +20,7 @@
     "create-local:teledisko": "graph create --node http://localhost:8020/ TelediskoDAO/$FORK",
     "remove-local:teledisko": "graph remove --node http://localhost:8020/ TelediskoDAO/$FORK",
     "deploy-production:teledisko": "NETWORK=evmos pnpm build:teledisko && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 TelediskoDAO/$FORK --network-file networks/teledisko.json --network evmos",
-    "deploy-staging:teledisko": "NETWORK=tevmos pnpm build:teledisko && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 TelediskoDAO//$FORK/staging --network-file networks/teledisko.json --network tevmos",
+    "deploy-staging:teledisko": "NETWORK=tevmos pnpm build:teledisko && graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 TelediskoDAO/$FORK/staging --network-file networks/teledisko.json --network tevmos",
     "generate:contracts-addresses:teledisko": "CURRENT_DAO=teledisko node ./generate-contract-addresses.js"
   },
   "dependencies": {
