@@ -1,6 +1,7 @@
 import { Address, log } from "@graphprotocol/graph-ts";
 import {
   DepositStarted,
+  Settled,
   Transfer,
   VestingSet,
 } from "../generated/GovernanceToken/GovernanceToken";
@@ -43,7 +44,7 @@ export function handleDepositStarted(event: DepositStarted): void {
   const from = event.params.from;
   const amount = event.params.amount;
   const settlementTimestamp = event.params.settlementTimestamp;
-  const id = event.params.id;
+  const id = event.params.index;
 
   const depositId = from.toHexString() + "-" + id.toHexString();
   const deposit = new Deposit(depositId);
@@ -56,9 +57,9 @@ export function handleDepositStarted(event: DepositStarted): void {
   deposit.save();
 }
 
-export function handleDepositSettled(event: DepositSettled): void {
+export function handleDepositSettled(event: Settled): void {
   const from = event.params.from;
-  const id = event.params.id;
+  const id = event.params.index;
 
   const depositId = from.toHexString() + "-" + id.toHexString();
   const deposit = Deposit.load(depositId);
