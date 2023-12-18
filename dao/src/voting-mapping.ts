@@ -1,7 +1,8 @@
-import { DelegateChanged } from "../generated/Voting/Voting";
+import { DelegateChanged, Voting } from "../generated/Voting/Voting";
 import { DelegationUser } from "../generated/schema";
-import { log } from "@graphprotocol/graph-ts";
+import { Address, log } from "@graphprotocol/graph-ts";
 import saveDaoUserData from "./save-dao-user-data";
+import { getDaoManagerEntity, reloadTotalVotingPower } from "./dao-manager";
 
 export function handleDelegateChanged(event: DelegateChanged): void {
   const delegatorHexString = event.params.delegator.toHexString();
@@ -29,4 +30,6 @@ export function handleDelegateChanged(event: DelegateChanged): void {
   if (event.params.delegator != event.params.newDelegate) {
     saveDaoUserData(event.params.newDelegate, event.block);
   }
+
+  reloadTotalVotingPower();
 }

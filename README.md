@@ -6,20 +6,55 @@ To manage containers, update the subgraph: `ssh worker@api.neokingdom.org`
 
 To admin the server: `ssh root@api.neokingdom.org`
 
+## Deploy a new subgraph
+
+Make sure you've updated the networks/:DAO.json. **Attention**: the shape of the JSON **needs** to be:
+
+```JSON
+{
+  "networkName": {
+     "ContractName": {
+      "address": "...",
+      "startBlock": 123
+    },
+  },
+}
+```
+
+Otherwise it will error upon deployment
+
+Connect to worker@api2.neokingdom.org, run `tmux attach` to connect to the current tmux session, go to `/home/worker/subgraph/dao`, run 
+
+- staging instance: `pnpm run remove-local:DAO ; pnpm run create-local:DAO ; pnpm deploy-staging:DAO`
+- production instance: `pnpm run remove-local:DAO ; pnpm run create-local:DAO ; pnpm deploy-production:DAO`
+
+Note: At the moment, `:DAO` can be `neokingdom`, `crowdpunk` or `teledisko`
+
+Another important note: for `neokingdom`, you also need to export the $FORK env variable. 
+
+### Sample deployment of a new subgraph (i.e. Crowdpunk)
+
+ℹ️ Update the network json (if not updated already), push the code.
+
+```bash
+ssh worker@api2.neokingdom.org
+
+worker@neokingdom2:~$ cd NEOKingdomDAO/subgraph/dao
+worker@neokingdom2:~/NEOKingdomDAO/subgraph/dao$ git pull
+worker@neokingdom2:~/NEOKingdomDAO/subgraph/dao$ pnpm run remove-local:crowdpunk; pnpm create-local:crowdpunk; pnpm deploy-production:crowdpunk
+```
+
+✅
+
 ## Troubleshooting
 
-### Deploy a new subgraph
+### Check the logs in the graph-node container
+```
+worker@neokingdom2:~$ docker ps | grep node
+88ccf892a3a1   graphprotocol/graph-node:d33bb7e
 
-Make sure you've updated all contract addresses (if https://github.com/TelediskoDAO/subgraph/issues/9 has not been implemented) in the `dao/subgraph.yaml` file. Update `startBlock` if needed.
-
-Connect to worker@api.neokingdom.org, run `tmux attach` to connect to the current tmux session, go to `/home/worker/subgraph/dao`, run 
-
-- staging instance: `pnpm run remove-local ; pnpm run create-local ; pnpm deploy-staging`
-- production instance: `pnpm run remove-local ; pnpm run create-local ; pnpm deploy-production`
-
-### Contract changed? Update and regenerate ABI
-
-TBD
+worker@neokingdom2:~$ docker logs 88ccf892a3a1 -n1000 -f
+```
 
 ### ERRO the genesis block hash for chain tevmos has changed from X to Y since the last time we ran, component: BlockStore
 
@@ -56,6 +91,13 @@ GENESIS_BLOCK=<genesis block>
 git clone https://github.com/graphprotocol/graph-node/
 cd graph-node/docker
 docker-compose up
+```
+
+## Deploy locally
+```
+graph create --node http://localhost:8020/ <subgraph-name>
+graph init --product hosted-service --from-contract <address> --allow-simple-name --index-events --contract-name <contract-name> --abi <dir> --network mainnet --protocol ethereum <subgraph-name>
+graph deploy <subgraph-name> -g http://localhost:8020/ -i http://localhost:5001/
 ```
 
 ## Deploy locally

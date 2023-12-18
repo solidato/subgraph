@@ -1,9 +1,11 @@
-const networksNeokingdom = require("./networks-neokingdom.json");
-const networksCrowdpunk = require("./networks-crowdpunk.json");
+const networksNeokingdom = require("./networks/neokingdom.json");
+const networksCrowdpunk = require("./networks/crowdpunk.json");
+const networksTeledisko = require("./networks/teledisko.json");
 const fs = require("fs");
 
 const networksChooser = {
   neokingdom: networksNeokingdom,
+  teledisko: networksTeledisko,
   crowdpunk: networksCrowdpunk,
 }
 
