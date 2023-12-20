@@ -139,6 +139,10 @@ dataSources:
           handler: handleTransfer
         - event: VestingSet(address,uint256)
           handler: handleVestingSet
+        - event: DepositStarted(indexed uint256,address,uint256,uint256)
+          handler: handleDepositStarted
+        - event: Settled(indexed uint256,address)
+          handler: handleDepositSettled
       file: ./src/governance-token-mapping.ts
     network: evmos
   - kind: ethereum
