@@ -1,5 +1,6 @@
 import { Redemption, RedemptionHistory } from "../generated/schema";
 import { RedemptionCreated, RedemptionUpdated } from "../generated/RedemptionController/RedemptionController";
+import saveDaoUserData from "./save-dao-user-data";
 
 export function handleRedemptionCreated(event: RedemptionCreated): void {
   const index = event.params.index.toString();
@@ -33,6 +34,7 @@ export function handleRedemptionUpdated(event: RedemptionUpdated): void {
 
     redemption.redemptionHistory.push(redemptionHistoryItem.id);
     redemption.save();
+    saveDaoUserData(from, event.block)
   }
   
 }
