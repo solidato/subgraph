@@ -84,6 +84,9 @@ npm install -g @graphprotocol/graph-cli
 # make sure your env contains the following variable
 ETHEREUM=<tevmos:https://eth.bd.evmos.dev:8545 | evmos:https://eth.bd.evmos.org:8545>
 GENESIS_BLOCK=<genesis block>
+IPFS=http://localhost:5001 # or the remote ipfs endpoint
+# in case, the fork name
+FORK=fork-name
 
 # install and run ethnode or ganache-cli
 # deploy contracts locally
