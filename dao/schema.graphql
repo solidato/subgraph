@@ -16,18 +16,10 @@ type ResolutionType @entity {
   canBeNegative: Boolean!
 }
 
-type ResolutionMetadata @entity {
-  id: ID!
-  isMonthlyRewards: Boolean!,
-  month: String!
-}
-
 type Resolution @entity {
   id: ID!
   snapshotId: BigInt!
-  ipfsDataURI: String!
-  title: String!
-  content: String!
+  hash: String!
   isNegative: Boolean!
   yesVotesTotal: BigInt
   resolutionType: ResolutionType!
@@ -46,7 +38,6 @@ type Resolution @entity {
   executionTimestamp: BigInt
   addressedContributor: Bytes
   totalVotingPower: BigInt
-  metadata: ResolutionMetadata
 }
 
 type DelegationUser @entity {
