@@ -6,6 +6,8 @@ dataSources:
     name: ResolutionManager
     source:
       abi: ResolutionManager
+      address: "0x85cC3837dB32b7E6cd48F2a819c7e0610d1B22FA"
+      startBlock: 119531328
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -43,6 +45,8 @@ dataSources:
     name: ShareholderRegistry
     source:
       abi: ShareholderRegistry
+      address: "0x48a2E2DcA629AF8788757a418c705Bc97001F929"
+      startBlock: 119531301
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -65,6 +69,8 @@ dataSources:
     name: Voting
     source:
       abi: Voting
+      address: "0xc2Eacfd32E88E61343F852689AC36B00f1E9BE59"
+      startBlock: 119531179
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -89,6 +95,8 @@ dataSources:
     name: InternalMarket
     source:
       abi: InternalMarket
+      address: "0xB8cB2c91bcb3D8d9dC3825bb940D060862a2E243"
+      startBlock: 119531276
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -117,6 +125,8 @@ dataSources:
     name: GovernanceToken
     source:
       abi: GovernanceToken
+      address: "0xF9aD1196D7deCF6e11a0A33Ca53a078f55500965"
+      startBlock: 119531209
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -147,6 +157,8 @@ dataSources:
     name: NeokingdomToken
     source:
       abi: NeokingdomToken
+      address: "0x864E5daa75433A7E30aea4bD3E7281e2B5e9680A"
+      startBlock: 119531232
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -171,6 +183,8 @@ dataSources:
     name: RedemptionController
     source:
       abi: RedemptionController
+      address: "0x4B9f8f8DaCfCb694052E3773f8d42d0190297BDf"
+      startBlock: 119531252
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

@@ -4,11 +4,11 @@
   "scripts": {
     "check-env": "node -e 'console.log(process.env)'",
     "codegen": "graph codegen",
-    "build:solidato": "CURRENT_DAO=solidato pnpm codegen && pnpm generate:contracts-addresses:solidato && graph build --ipfs $IPFS",
+    "build:solidato": "CURRENT_DAO=solidato pnpm codegen && pnpm generate:contracts-addresses:solidato && graph build",
     "create-local:solidato": "graph create --node http://localhost:8020/ solidatoDAO/$FORK",
     "remove-local:solidato": "graph remove --node http://localhost:8020/ solidatoDAO/$FORK",
-    "deploy-production:solidato": "NETWORK=evmos pnpm build:solidato && graph deploy --node http://localhost:8020/ --ipfs $IPFS solidatoDAO/$FORK --network-file networks/solidato.json --network optimism",
-    "deploy-staging:solidato": "NETWORK=tevmos pnpm build:solidato && graph deploy --node http://localhost:8020/ --ipfs $IPFS solidatoDAO/$FORK/staging --network-file networks/solidato.json --network optimism-test",
+    "deploy-production:solidato": "NETWORK=optimism pnpm build:solidato && graph deploy --studio solidato --network-file networks/solidato.json --network optimism",
+    "deploy-staging:solidato": "NETWORK=optimism-sepolia pnpm build:solidato && graph deploy --studio solidato-test --network-file networks/solidato.json --network optimism-sepolia",
     "generate:contracts-addresses:solidato": "CURRENT_DAO=solidato node ./generate-contract-addresses.js"
   },
   "dependencies": {

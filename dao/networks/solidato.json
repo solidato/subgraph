@@ -2,43 +2,35 @@
   "optimism": {
     "DAORoles": {
       "address": "0xBBb56C9F432A9a45614DdA67A91f8D85DCE04308",
-      "startBlock": 119531154,
-      "blockHash": "0x64be0ab7293f32e99a0490e2540f9346e69d3aafc9f11b599f8352b5724a6fe6"
+      "startBlock": 119531154
     },
     "Voting": {
       "address": "0xc2Eacfd32E88E61343F852689AC36B00f1E9BE59",
-      "startBlock": 119531179,
-      "blockHash": "0x0c78410fae7c83c0a8e0cfc6db2036c5dbc29d9040656558556ac7f0b58671ee"
+      "startBlock": 119531179
     },
     "GovernanceToken": {
       "address": "0xF9aD1196D7deCF6e11a0A33Ca53a078f55500965",
-      "startBlock": 119531209,
-      "blockHash": "0x72124239d1de23e898fbdeb60c8207748f25bb15a70019417562b70edf827191"
+      "startBlock": 119531209
     },
     "NeokingdomToken": {
       "address": "0x864E5daa75433A7E30aea4bD3E7281e2B5e9680A",
-      "startBlock": 119531232,
-      "blockHash": "0x3c668e7d8260a65abee073291ec8fac93cb4fbb08037ef84e8723545e6937591"
+      "startBlock": 119531232
     },
     "RedemptionController": {
       "address": "0x4B9f8f8DaCfCb694052E3773f8d42d0190297BDf",
-      "startBlock": 119531252,
-      "blockHash": "0x39e92bd8f70c8584002b78bbaae1c78ab08b4a83ea7b1a1af450091e7f1a58bb"
+      "startBlock": 119531252
     },
     "InternalMarket": {
       "address": "0xB8cB2c91bcb3D8d9dC3825bb940D060862a2E243",
-      "startBlock": 119531276,
-      "blockHash": "0xa865727852be2413c0783650f8564bfe57b9b0e811c1f94bb3fdb9bb456bb565"
+      "startBlock": 119531276
     },
     "ShareholderRegistry": {
       "address": "0x48a2E2DcA629AF8788757a418c705Bc97001F929",
-      "startBlock": 119531301,
-      "blockHash": "0x47f413d4f93aa82d8eb458f5f564dd7e26603b2913eafc17cb2026be868d0c7d"
+      "startBlock": 119531301
     },
     "ResolutionManager": {
       "address": "0x85cC3837dB32b7E6cd48F2a819c7e0610d1B22FA",
-      "startBlock": 119531328,
-      "blockHash": "0x6931093a19b2268b60cf9b12898b5c308b18d72687f689f0ea79905efb496095"
+      "startBlock": 119531328
     }
   }
 }
