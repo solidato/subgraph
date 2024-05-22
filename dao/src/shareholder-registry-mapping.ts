@@ -164,12 +164,25 @@ export function handleTransfer(event: Transfer): void {
   if (addressFrom != Address.zero()) {
     const daoUserFrom = getDaoUser(addressFromHex);
     const maybeVotingPower = votingContract.try_getVotingPower(addressFrom);
+
     if (!maybeVotingPower.reverted) {
       daoUserFrom.votingPower = maybeVotingPower.value;
       const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(
         addressFrom
       );
+
+      /* log.info("SHAREHOLDER_REGISTRY try setting shares for from address {}", [
+        addressFrom.toHexString(),
+      ]);*/
       if (!maybeShareholderRegistryBalance.reverted) {
+        /*log.info(
+          "SHAREHOLDER_REGISTRY setting shares, addressFrom {}, new value {}",
+          [
+            addressFrom.toHexString(),
+            maybeShareholderRegistryBalance.value.toString(),
+          ]
+        );*/
+
         daoUserFrom.shareholderRegistryBalance =
           maybeShareholderRegistryBalance.value;
       }
@@ -179,15 +192,29 @@ export function handleTransfer(event: Transfer): void {
 
   if (addressTo != Address.zero()) {
     const daoUserTo = getDaoUser(addressToHex);
-    const maybeVotingPower = votingContract.try_getVotingPower(addressFrom);
+    const maybeVotingPower = votingContract.try_getVotingPower(addressTo);
     if (!maybeVotingPower.reverted) {
       daoUserTo.votingPower = maybeVotingPower.value;
       const maybeShareholderRegistryBalance = shareholderRegistryContract.try_balanceOf(
-        addressFrom
+        addressTo
       );
+
+      /*log.info("SHAREHOLDER_REGISTRY try setting shares for to address {}", [
+        addressTo.toHexString(),
+      ]);*/
+
       if (!maybeShareholderRegistryBalance.reverted) {
+        /*log.info(
+          "SHAREHOLDER_REGISTRY setting shares, addressTo {}, new value {}",
+          [
+            addressTo.toHexString(),
+            maybeShareholderRegistryBalance.value.toString(),
+          ]
+        );*/
         daoUserTo.shareholderRegistryBalance =
           maybeShareholderRegistryBalance.value;
+      } else {
+        log.error("FAILED", []);
       }
       daoUserTo.save();
     }
