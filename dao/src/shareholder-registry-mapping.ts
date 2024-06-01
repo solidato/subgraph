@@ -171,17 +171,18 @@ export function handleTransfer(event: Transfer): void {
         addressFrom
       );
 
-      /* log.info("SHAREHOLDER_REGISTRY try setting shares for from address {}", [
-        addressFrom.toHexString(),
-      ]);*/
+      log.info(
+        "SHAREHOLDER_REGISTRY_S try setting shares for from address {}",
+        [addressFrom.toHexString()]
+      );
       if (!maybeShareholderRegistryBalance.reverted) {
-        /*log.info(
-          "SHAREHOLDER_REGISTRY setting shares, addressFrom {}, new value {}",
+        log.info(
+          "SHAREHOLDER_REGISTRY_S setting shares, addressFrom {}, new value {}",
           [
             addressFrom.toHexString(),
             maybeShareholderRegistryBalance.value.toString(),
           ]
-        );*/
+        );
 
         daoUserFrom.shareholderRegistryBalance =
           maybeShareholderRegistryBalance.value;
@@ -199,18 +200,18 @@ export function handleTransfer(event: Transfer): void {
         addressTo
       );
 
-      /*log.info("SHAREHOLDER_REGISTRY try setting shares for to address {}", [
+      log.info("SHAREHOLDER_REGISTRY_S try setting shares for to address {}", [
         addressTo.toHexString(),
-      ]);*/
+      ]);
 
       if (!maybeShareholderRegistryBalance.reverted) {
-        /*log.info(
-          "SHAREHOLDER_REGISTRY setting shares, addressTo {}, new value {}",
+        log.info(
+          "SHAREHOLDER_REGISTRY_S setting shares, addressTo {}, new value {}",
           [
             addressTo.toHexString(),
             maybeShareholderRegistryBalance.value.toString(),
           ]
-        );*/
+        );
         daoUserTo.shareholderRegistryBalance =
           maybeShareholderRegistryBalance.value;
       } else {
