@@ -32,5 +32,73 @@
       "address": "0x85cC3837dB32b7E6cd48F2a819c7e0610d1B22FA",
       "startBlock": 119531328
     }
+  },
+  "optimism-sepolia": {
+    "DAORoles": {
+      "address": "0xBBb56C9F432A9a45614DdA67A91f8D85DCE04308",
+      "startBlock": 12895552
+    },
+    "Voting": {
+      "address": "0xc2Eacfd32E88E61343F852689AC36B00f1E9BE59",
+      "startBlock": 12895570
+    },
+    "GovernanceToken": {
+      "address": "0xF9aD1196D7deCF6e11a0A33Ca53a078f55500965",
+      "startBlock": 12895582
+    },
+    "NeokingdomToken": {
+      "address": "0x864E5daa75433A7E30aea4bD3E7281e2B5e9680A",
+      "startBlock": 12895591
+    },
+    "RedemptionController": {
+      "address": "0x4B9f8f8DaCfCb694052E3773f8d42d0190297BDf",
+      "startBlock": 12895604
+    },
+    "InternalMarket": {
+      "address": "0xB8cB2c91bcb3D8d9dC3825bb940D060862a2E243",
+      "startBlock": 12895617
+    },
+    "ShareholderRegistry": {
+      "address": "0x48a2E2DcA629AF8788757a418c705Bc97001F929",
+      "startBlock": 12895631
+    },
+    "ResolutionManager": {
+      "address": "0x85cC3837dB32b7E6cd48F2a819c7e0610d1B22FA",
+      "startBlock": 12895643
+    }
+  },
+  "sepolia": {
+    "DAORoles": {
+      "address": "0xf6C3f93CD4C3Be68Dd061dA26B63E43EcdAf3e3C",
+      "startBlock": 6077720
+    },
+    "Voting": {
+      "address": "0xAb1BBaf95Ec342177e48d02c8722e0Fa3d1eaa98",
+      "startBlock": 6077728
+    },
+    "GovernanceToken": {
+      "address": "0x0a068Ab22fEfB44395172be4d96a79465e0dd619",
+      "startBlock": 6077739
+    },
+    "NeokingdomToken": {
+      "address": "0x74b20ca1b01336D1cACcabFe434185edCce3949E",
+      "startBlock": 6077746
+    },
+    "RedemptionController": {
+      "address": "0xE62aba209051576968cDeB967f81b0D9A5d0E613",
+      "startBlock": 6077753
+    },
+    "InternalMarket": {
+      "address": "0x31A1E7e971b571291E93A6a9CF1dD831aB2D273F",
+      "startBlock": 6077760
+    },
+    "ShareholderRegistry": {
+      "address": "0x54F060a174793b6bE5fCECb8ebFeA9C4B2ab05Bb",
+      "startBlock": 6077768
+    },
+    "ResolutionManager": {
+      "address": "0xb8363748aAc6DdCDfD4aE5Afe893Ee4c408888a2",
+      "startBlock": 6077776
+    }
   }
 }

@@ -23,6 +23,9 @@ if (!networks[network]) {
   process.exit(1);
 }
 
+console.log("NETWORK")
+console.log(network);
+
 fs.writeFile(
   "./generated/addresses.ts",
   `export const VOTING_CONTRACT_ADDRESS = '${votingAddress}';

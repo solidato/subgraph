@@ -174,14 +174,14 @@ export function handleResolutionCreated(event: ResolutionCreated): void {
   const blockChainResolution = resolutionManager.resolutions(
     event.params.resolutionId
   );
-  console.log(`Resolution created ID ${event.params.resolutionId.toString()}`);
+  log.info("Resolution created ID {}", [event.params.resolutionId.toString()]);
 
   if (blockChainResolution) {
     resolutionEntity.createTimestamp = event.block.timestamp;
     resolutionEntity.createBy = event.transaction.from;
-    console.log(
-      `Resolution created by  ${event.transaction.from.toHexString()}`
-    );
+    log.info("Resolution created by {}", [
+      event.transaction.from.toHexString(),
+    ]);
 
     setValuesFromResolutionContract(
       resolutionEntity,
